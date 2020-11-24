@@ -24,34 +24,13 @@ define([
 
       this.id = id;
       this.config = config;
-
-      //includeJS("https://cloud.n1ed.com/cdn/EOEUDFLT/n1tinymce-iframe.js", document, function() {});
-
-      includeJS("https://cloud.n1ed.com/cdn/EOEUDFLT/n1tinymce.js", document, function() {});
-      //includeJS("https://local.cloud.n1ed.com/cdn/ATVGDFLT/n1tinymce.js", document, function() {});
+      includeJS("https://cloud.n1ed.com/cdn/N1EDDFLT/n1tinymce.js", document, function() {});
     },
 
     /**
      * @param {*} mode
      */
     setup: function (mode) {
-
-      /*function setupNow(id, config) {
-        var elTextArea = document.getElementById(id);
-        let elIFrame = window.initEditorInIFrame(elTextArea, config);
-        elIFrame.style.width = "1000px";
-        elIFrame.style.height = "800px";
-      }
-
-      function waitForEditor(id, config) {
-        if (window.initEditorInIFrame)
-          setupNow(id, config);
-        else {
-          setTimeout(function () {
-            waitForEditor(id, config);
-          }, 100);
-        }
-      }*/
 
       function setupNow(id, config) {
 
@@ -84,9 +63,8 @@ define([
      * @param {String} content
      * @param {Boolean} ui
      */
-    /*insertContent: function (content, ui) {
-      this.activeEditor().insertText(content);
-    },*/
+    insertContent: function (content, ui) {
+    },
 
     /**
      * @param {Object} o
