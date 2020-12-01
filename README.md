@@ -1,1 +1,1 @@
-N1ED WYSIWYG editor module package
+bin/magento s:d:c && bin/magento setup:upgrade && bin/magento c:c
