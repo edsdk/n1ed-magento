@@ -1,5 +1,5 @@
 {
-    "name": "n1ed/n1ed",
+    "name": "avgustine/wysiwyg-plugin",
     "description": "n1ed wysiwyg",
     "require": {
       "php": ">=7.0.0",
