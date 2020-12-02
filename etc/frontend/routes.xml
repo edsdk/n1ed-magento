@@ -4,8 +4,8 @@
   xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd"
 >
     <router id="standard">
-        <route frontName="n1edUpload" id="n1edUpload">
-            <module name="N1ED_N1ED" />
+        <route frontName="n1edupload" id="n1edupload">
+            <module name="Avgustine_Wysiwyg-plugin" />
         </route>
     </router>
 </config>
