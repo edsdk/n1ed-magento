@@ -9,7 +9,7 @@
                     <item
             name="value"
             xsi:type="string"
-          >N1ED_N1ED/N1EDAdapter</item>
+          >Avgustine_Wysiwyg/N1EDAdapter</item>
                     <item
             name="label"
             xsi:type="string"
@@ -22,7 +22,7 @@
     <type name="Magento\Ui\Block\Wysiwyg\ActiveEditor">
         <arguments>
             <argument name="availableAdapterPaths" xsi:type="array">
-                <item name="N1ED_N1ED/N1EDAdapter" xsi:type="string" />
+                <item name="Avgustine_Wysiwyg/N1EDAdapter" xsi:type="string" />
             </argument>
         </arguments>
     </type>
