@@ -4,3 +4,9 @@ composer config repositories.private-packagist composer https://repo.packagist.c
 composer config repositories.packagist.org false
 composer require avgustine/wysiwyg
 bin/magento s:d:c && bin/magento setup:upgrade && bin/magento c:c
+
+FILE MANAGER
+
+File Manager URL: /upload/filemngr/upload
+Files URL: /pub/media/wysiwyg/
+Uploads directory: /
