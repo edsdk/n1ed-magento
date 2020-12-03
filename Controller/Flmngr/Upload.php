@@ -2,7 +2,7 @@
  * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace EdSDK\Wysiwyg\Controller\Filemngr;
+namespace EdSDK\Wysiwyg\Controller\Flmngr;
 
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
