@@ -62,7 +62,7 @@ class Upload extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
    
        //    return $result->setData($data);
    
-          // echo json_encode(['lol' => 'magento']);
+       //    echo json_encode(['lol' => 'magento']);
    }
 
 

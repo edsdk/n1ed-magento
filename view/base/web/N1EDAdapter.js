@@ -80,62 +80,9 @@ define([
          */
         setup: function (mode) {
           function setupNow(settings){
-              // var deferreds = [],
-              // settings,
-              // self = this;
   
               tinymce.init(settings);
-        
-  
-          //   this.turnOff();
-  
-          //   if (this.config.plugins) {
-          //       this.config.plugins.forEach(function (plugin) {
-          //           var deferred;
-  
-          //           self.addPluginToToolbar(plugin.name, '|');
-  
-          //           if (!plugin.src) {
-          //               return;
-          //           }
-  
-          //           deferred = jQuery.Deferred();
-          //           deferreds.push(deferred);
-  
-          //           require([plugin.src], function (factoryFn) {
-          //               if (typeof factoryFn === 'function') {
-          //                   factoryFn(plugin.options);
-          //               }
-  
-          //               tinymce.PluginManager.load(plugin.name, plugin.src);
-          //               deferred.resolve();
-          //           });
-          //       });
-          //   }
-  
-          //   if (jQuery.isReady) {
-          //       tinymce.dom.Event.domLoaded = true;
-          //   }
-  
-          //   settings = this.getSettings();
-  
-          //   if (mode === 'inline') {
-          //       settings.inline = true;
-  
-          //       if (!isNaN(settings.toolbarZIndex)) {
-          //           tinymce.ui.FloatPanel.zIndex = settings.toolbarZIndex;
-          //       }
-  
-          //       this.removeEvents(self.id);
-          //   }
-  
-          //   jQuery.when.apply(jQuery, deferreds).done(function () {
-          //       tinymce.init(settings);
-          //       this.getPluginButtons().hide();
-          //       varienGlobalEvents.clearEventHandlers('open_browser_callback');
-          //       this.eventBus.clearEventHandlers('open_browser_callback');
-          //       this.eventBus.attachEventHandler('open_browser_callback', tinyMceEditors.get(self.id).openFileBrowser);
-          //   }.bind(this));
+
           }
   
           function waitForEditor(settings) {
@@ -223,17 +170,8 @@ define([
   
             settings = {
                 selector: '#' + this.getId(),
-                // theme: 'modern',
-                // skin: 'magento',
-              //   'entity_encoding': 'raw',
-              //   'convert_urls': false,
-              //   'content_css': this.config.tinymce4['content_css'],
-              //   'relative_urls': true,
-              //   'valid_children': '+body[style]',
-              //   menubar: false,
-              //   plugins: this.config.tinymce4.plugins,
-              //   toolbar: this.config.tinymce4.toolbar,
-              //   adapter: this,
+                urlFileManager: '/upload/flmngr/upload',
+                urlFiles: '/pub/media/wysiwyg/',
   
                 /**
                  * @param {Object} editor
@@ -307,25 +245,7 @@ define([
             if (this.config['document_base_url']) {
                 settings['document_base_url'] = this.config['document_base_url'];
             }
-  
-            if (this.config['files_browser_window_url']) {
-                /**
-                 * @param {*} fieldName
-                 * @param {*} url
-                 * @param {*} objectType
-                 * @param {*} w
-                 */
-                settings['file_browser_callback'] = function (fieldName, url, objectType, w) {
-                    var payload = {
-                        win: w,
-                        type: objectType,
-                        field: fieldName
-                    };
-  
-                    varienGlobalEvents.fireEvent('open_browser_callback', payload);
-                    this.eventBus.fireEvent('open_browser_callback', payload);
-                }.bind(this);
-            }
+
   
             if (this.config.width) {
                 settings.width = this.config.width;

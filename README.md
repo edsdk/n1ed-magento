@@ -9,11 +9,4 @@ composer require edsdk/n1ed-magento
 bin/magento s:d:c && bin/magento setup:upgrade && bin/magento c:c
 
 
-FILE MANAGER
-
-File Manager URL: /upload/filemngr/upload
-
-Files URL: /pub/media/wysiwyg/
-
-Uploads directory: /
 
