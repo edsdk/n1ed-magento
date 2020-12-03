@@ -36,7 +36,7 @@ define([
         initialize: function (htmlId, config) {
   
   
-          var n1edapi = '3E8VDFLT';
+          var n1edapi = 'MGNTDFLT';
   
   
           includeJS(`https://cloud.n1ed.com/cdn/${n1edapi}/n1tinymce.js`, document, function() {});

@@ -1,8 +1,9 @@
 {
-  "name": "avgustine/wysiwyg",
+  "name": "edsdk/n1ed-magento",
   "description": "n1ed wysiwyg",
   "require": {
-    "php": ">=7.0.0"
+    "php": ">=7.0.0",
+    "edsdk/flmngr-server-php": "^1.0.34"
   },
   "type": "magento2-module",
   "license": [
@@ -21,7 +22,7 @@
       "registration.php"
     ],
     "psr-4": {
-      "Avgustine\\Wysiwyg\\" : ""
+      "EdSDK\\Wysiwyg\\" : ""
     }      
   }
 }
