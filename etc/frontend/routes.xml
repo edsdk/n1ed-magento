@@ -5,7 +5,7 @@
 >
     <router id="standard">
         <route frontName="upload" id="upload">
-            <module name="Avgustine_Wysiwyg" />
+            <module name="EdSDK_N1ED" />
         </route>
     </router>
 </config>

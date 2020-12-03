@@ -1,7 +1,7 @@
 <?php
 \Magento\Framework\Component\ComponentRegistrar::register(
   \Magento\Framework\Component\ComponentRegistrar::MODULE,
-  'Avgustine_Wysiwyg',
+  'EdSDK_N1ED',
   __DIR__
 );
 
