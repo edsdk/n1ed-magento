@@ -1,6 +1,6 @@
 {
   "name": "edsdk/n1ed-magento",
-  "description": "n1ed wysiwyg",
+  "description": "N1ED editor for Magento CMS",
   "require": {
     "php": ">=7.0.0",
     "edsdk/flmngr-server-php": "^1.0.34"
@@ -14,7 +14,12 @@
     {
       "name": "Ilia Kandaurov",
       "email": "ilia@kandaurov.su",
-      "role": "Leader"
+      "role": "Developer"
+    },
+    {
+      "name": "Dmitriy Komarov",
+      "email": "contact@n1ed.com",
+      "role": "Developer"
     }
   ],
   "autoload": {

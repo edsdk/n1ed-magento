@@ -502,7 +502,6 @@ define([
          * @param {Object} o
          */
         saveContent: function (o) {
-            console.log('tinymce save content')
             o.content = this.decodeContent(o.content);
         },
   
