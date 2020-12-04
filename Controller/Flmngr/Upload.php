@@ -36,11 +36,11 @@ class Upload extends \Magento\Framework\App\Action\Action implements CsrfAwareAc
 
               $dir = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
 
-              $this->createDirIfNotExist($this->dirFiles = $dir->getPath('media') . '//wysiwyg//');
+              $this->createDirIfNotExist($this->dirFiles = $dir->getPath('media') . '/wysiwyg/');
 
-              $this->createDirIfNotExist($this->dirCache = $dir->getPath('cache') . '//wysiwyg//');
+              $this->createDirIfNotExist($this->dirCache = $dir->getPath('cache') . '/wysiwyg/');
 
-              $this->createDirIfNotExist($this->dirTmp = $dir->getPath('tmp') . '//wysiwyg//');
+              $this->createDirIfNotExist($this->dirTmp = $dir->getPath('tmp') . '/wysiwyg/');
        }
 
 
