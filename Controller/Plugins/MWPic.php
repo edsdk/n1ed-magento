@@ -10,7 +10,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\Module\Dir;
 
-class MagentoWidgets extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
+class MWPic extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
 
 
   /**
@@ -24,14 +24,16 @@ class MagentoWidgets extends \Magento\Framework\App\Action\Action implements Csr
    */
   public function __construct(\Magento\Framework\App\Action\Context $context, \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory, Dir $moduleDir) {
     parent::__construct($context);
-   
+
+
   }
+
 
 
   public function execute() {
 
-    header('Content-Type: application/javascript');
-    echo file_get_contents(__DIR__ . '/magento_widgets.js');
+    header('Content-Type: image/png');
+    echo file_get_contents(__DIR__ . '/mw.png');
    
   }
 

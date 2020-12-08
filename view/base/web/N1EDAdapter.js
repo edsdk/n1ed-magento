@@ -214,13 +214,13 @@ define([
         urlFileManager: '/upload/flmngr/upload',
         urlFiles: '/pub/media/wysiwyg/',
         relative_urls: false,
-        // plugins: 'magentowidget',
+        plugins: ['magentowidget5'],
         external_plugins: {
-          magentowidget : '/upload/plugins/magentowidgets'
+          magentowidget5 : '/upload/plugins/magentowidgets'
         },
         "toolbar": [
           "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
-          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent |  magentowidget"
+          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent |  magentowidget5"
         ],
     
         // toolbar: this.config.tinymce4.toolbar,
