@@ -6,7 +6,7 @@ define([
     'mage/adminhtml/wysiwyg/widget'
 ], function (wysiwyg, varienGlobalEvents) {
     return function (config) {
-        tinymce.create('tinymce.plugins.magentowidget', {
+        tinymce.create('tinymce.plugins.magentowidget5', {
 
             /**
              * @param {tinymce.Editor} editor - Editor instance that the plugin is initialized in.
@@ -27,13 +27,12 @@ define([
                         config['window_url'] + 'widget_target_id/' + editor.getElement().id + '/'
                     );
                 });
-                editor.ui.registry.addIcon('magentowidget', '<img src="'  + url + '/img/icon.png' + '" />');
+                editor.ui.registry.addIcon('magentowidgets', '<img src="/upload/plugins/mwpic" />');
                 // Register Widget plugin button
                 editor.ui.registry.addButton('magentowidget', {
                     title: jQuery.mage.__('Insert Widget'),
                     cmd: 'mceMagentowidget',
-                    image: url + '/img/icon.png',
-                    icon: 'magentowidget',
+                    icon: 'magentowidgets',
                     onAction: function() {
                         editor.execCommand('mceMagentowidget', null);
                     },
@@ -223,6 +222,9 @@ define([
         });
 
         // Register plugin
-        tinymce.PluginManager.add('magentowidget', tinymce.plugins.magentowidget);
+        tinymce.PluginManager.add('magentowidget5', tinymce.plugins.magentowidget5);
+
+
+        console.log('dasdasd');
     };
 });
