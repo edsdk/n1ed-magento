@@ -1,8 +1,3 @@
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 /* global tinymce, widgetTools, jQuery, Base64 */
 /* eslint-disable strict */
 define([
@@ -47,20 +42,6 @@ define([
                      * Fires after the rendering has completed. This ensures the editor will be instantiated
                      */
                     onPostRender: function () {
-                        // var ctrl = this;
-
-                        // // Add a node change handler, selects the button in the UI when a image is selected
-                        // editor.on('nodeChange', function (e) {
-                        //     var placeholder = e.element;
-
-                        //     if (self.isWidgetPlaceholderSelected(placeholder)) {
-                        //         widgetTools.setEditMode(true);
-                        //         ctrl.active(true);
-                        //     } else {
-                        //         widgetTools.setEditMode(false);
-                        //         ctrl.active(false);
-                        //     }
-                        // });
                     }
                 });
 

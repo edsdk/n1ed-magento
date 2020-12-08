@@ -34,17 +34,7 @@ class MagentoWidgets extends \Magento\Framework\App\Action\Action implements Csr
   public function __construct(\Magento\Framework\App\Action\Context $context, \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory, Dir $moduleDir) {
     parent::__construct($context);
     $this->resultJsonFactory = $resultJsonFactory;
-    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-
     $this->moduleDir = $moduleDir;
-    
-
-
-    // $this->createDirIfNotExist($this->dirFiles = $dir->getPath('media') . '/wysiwyg');
-
-    // $this->createDirIfNotExist($this->dirCache = $dir->getPath('cache') . '/wysiwyg');
-
-    // $this->createDirIfNotExist($this->dirTmp = $dir->getPath('tmp') . '/wysiwyg');
   }
 
 
@@ -56,17 +46,8 @@ class MagentoWidgets extends \Magento\Framework\App\Action\Action implements Csr
   }
 
   public function execute() {
-
-    // echo $moduleControllerPath = $this->moduleDir->getDir('EdSDK_Wysiwyg', Dir::MODULE_CONTROLLER_DIR);
     header('Content-Type: application/javascript');
     echo file_get_contents(__DIR__ . '/magento_widgets.js');
-    // $this->getMyFilePath();
-
-    // FlmngrServer::flmngrRequest([
-    //   'dirFiles' => $this->dirFiles,
-    //   'dirTmp' => $this->dirTmp,
-    //   'dirCache' => $this->dirCache,
-    // ]);
   }
 
   /**
