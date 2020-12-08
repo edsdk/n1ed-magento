@@ -29,8 +29,10 @@ class MagentoWidgets extends \Magento\Framework\App\Action\Action implements Csr
 
 
   public function execute() {
+
     header('Content-Type: application/javascript');
     echo file_get_contents(__DIR__ . '/magento_widgets.js');
+   
   }
 
   /**

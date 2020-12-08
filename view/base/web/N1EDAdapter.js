@@ -86,10 +86,21 @@ define([
       var self = this;
       var deferreds = [];
 
+
+
       function setupNow(settings) {
 
         if (self.config.plugins) {
+
+          let mwdonor = Object.assign({} ,self.config.plugins.find(plugin => plugin.name == 'magentowidget'));
+
+          mwdonor.name = 'magentowidget5';
+          mwdonor.src = '/upload/plugins/magentowidgets';
+
+          self.config.plugins.push(mwdonor);
+
           self.config.plugins.forEach(function (plugin) {
+
             var deferred;
   
   
