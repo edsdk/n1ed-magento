@@ -34,10 +34,6 @@ define([
      */
     initialize: function (htmlId, config) {
 
-
-      console.log(config);
-
-
       var n1edapi = 'MGNTDFLT';
 
 
