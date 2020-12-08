@@ -35,6 +35,9 @@ define([
     initialize: function (htmlId, config) {
 
 
+      console.log(config);
+
+
       var n1edapi = 'MGNTDFLT';
 
 
@@ -79,9 +82,42 @@ define([
      * Setup TinyMCE4 editor
      */
     setup: function (mode) {
+
+      var self = this;
+      var deferreds = [];
+
       function setupNow(settings) {
 
+        if (self.config.plugins) {
+          self.config.plugins.forEach(function (plugin) {
+            var deferred;
+  
+  
+              self.addPluginToToolbar(plugin.name, '|');
+  
+              if (!plugin.src) {
+                  return;
+              }
+  
+              deferred = jQuery.Deferred();
+              deferreds.push(deferred);
+  
+              require([plugin.src], function (factoryFn) {
+                  if (typeof factoryFn === 'function') {
+                      factoryFn(plugin.options);
+                  }
+  
+                  tinymce.PluginManager.load(plugin.name, plugin.src);
+                  deferred.resolve();
+              });
+          });
+      }
+
         tinymce.init(settings);
+
+      console.log(tinymce);
+
+        
 
       }
 
@@ -95,6 +131,8 @@ define([
           }, 100);
         }
       }
+
+     
 
       waitForEditor(this.getSettings());
 
@@ -176,6 +214,16 @@ define([
         urlFileManager: '/upload/flmngr/upload',
         urlFiles: '/pub/media/wysiwyg/',
         relative_urls: false,
+        // plugins: 'magentowidget',
+        external_plugins: {
+          magentowidget : '/upload/plugins/magentowidgets'
+        },
+        "toolbar": [
+          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
+          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent |  magentowidget"
+        ],
+    
+        // toolbar: this.config.tinymce4.toolbar,
 
         /**
          * @param {Object} editor
