@@ -34,6 +34,10 @@ define([
      */
     initialize: function (htmlId, config) {
 
+
+      console.log(config);
+
+
       var n1edapi = 'MGNTDFLT';
 
 
@@ -82,9 +86,9 @@ define([
       var self = this;
       var deferreds = [];
 
-
-
       function setupNow(settings) {
+
+
 
         if (self.config.plugins) {
 
@@ -93,10 +97,13 @@ define([
           mwdonor.name = 'magentowidget5';
           mwdonor.src = '/upload/plugins/magentowidgets';
 
-          self.config.plugins.push(mwdonor);
+          // self.config.plugins.push(mwdonor);
+
+          let mwi = self.config.plugins.findIndex(plugin => plugin.name == 'magentowidget');
+
+          self.config.plugins[mwi] = mwdonor;
 
           self.config.plugins.forEach(function (plugin) {
-
             var deferred;
   
   
@@ -221,13 +228,13 @@ define([
         urlFileManager: '/upload/flmngr/upload',
         urlFiles: '/pub/media/wysiwyg/',
         relative_urls: false,
-        plugins: ['magentowidget5'],
+        // plugins: 'magentowidget',
         external_plugins: {
-          magentowidget5 : '/upload/plugins/magentowidgets'
+          magentowidget : '/upload/plugins/magentowidgets'
         },
         "toolbar": [
           "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
-          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent |  magentowidget5"
+          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent |  magentowidget"
         ],
     
         // toolbar: this.config.tinymce4.toolbar,
