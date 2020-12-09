@@ -37,7 +37,7 @@ define([
                         config['window_url'] + 'widget_target_id/' + editor.getElement().id + '/'
                     );
                 });
-                editor.ui.registry.addIcon('magentowidgets', '<img src="https://www.flaticon.com/svg/static/icons/svg/222/222401.svg" />');
+                editor.ui.registry.addIcon('magentowidgets', '<img src="/upload/plugins/mwpic" />');
                 // Register Widget plugin button
                 editor.ui.registry.addButton('magentowidget', {
                     title: jQuery.mage.__('Insert Widget'),
