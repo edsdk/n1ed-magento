@@ -35,7 +35,7 @@ define([
     initialize: function (htmlId, config) {
 
 
-      console.log(config);
+      // console.log('adapter',this);
 
 
       var n1edapi = 'MGNTDFLT';
@@ -89,12 +89,13 @@ define([
       function setupNow(settings) {
 
 
+        let magento_way = false;
 
-        if (self.config.plugins) {
+        if (self.config.plugins && magento_way) {
 
           let mwdonor = Object.assign({} ,self.config.plugins.find(plugin => plugin.name == 'magentowidget'));
 
-          mwdonor.name = 'magentowidget5';
+          // mwdonor.name = 'magentowidget';
           mwdonor.src = '/upload/plugins/magentowidgets';
 
           // self.config.plugins.push(mwdonor);
@@ -119,6 +120,7 @@ define([
               require([plugin.src], function (factoryFn) {
                   if (typeof factoryFn === 'function') {
                       factoryFn(plugin.options);
+                      
                   }
   
                   tinymce.PluginManager.load(plugin.name, plugin.src);
@@ -129,7 +131,7 @@ define([
 
         tinymce.init(settings);
 
-      console.log(tinymce);
+      // console.log(tinymce);
 
         
 
@@ -223,18 +225,28 @@ define([
       var settings,
           eventBus = this.eventBus;
 
+
+          let mwi = this.config.plugins.findIndex(plugin => plugin.name == 'magentowidget');
+
+          
+
       settings = {
         selector: '#' + this.getId(),
         urlFileManager: '/upload/flmngr/upload',
         urlFiles: '/pub/media/wysiwyg/',
         relative_urls: false,
+        varienGlobalEvents,
+        wysiwyg: this,
+        mwOpts: this.config.plugins[mwi].options,
+
         // plugins: 'magentowidget',
         external_plugins: {
-          magentowidget : '/upload/plugins/magentowidgets'
+          magentowidget : '/upload/plugins/magentowidgets',
+          // magentovariable: ''
         },
         "toolbar": [
           "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
-          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent |  magentowidget"
+          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | magentowidget magentovariable"
         ],
     
         // toolbar: this.config.tinymce4.toolbar,
