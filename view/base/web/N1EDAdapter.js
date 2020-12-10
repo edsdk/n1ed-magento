@@ -11,13 +11,17 @@ define([
   'underscore',
   'mage/adminhtml/events',
   'mage/adminhtml/wysiwyg/events',
-  'mage/translate',
-  'prototype',
-  'jquery/ui'
-], function (jQuery, _, varienGlobalEvents, wysiwygEvents) {
+  'Magento_Variable/js/config-directive-generator',
+  'Magento_Variable/js/custom-directive-generator'
+], function (jQuery, _, varienGlobalEvents, wysiwygEvents, configDirectiveGenerator,customDirectiveGenerator) {
   'use strict';
 
   var tinyMce4Wysiwyg = Class.create();
+
+  window.mv = {};
+  window.mv.configDirectiveGenerator = configDirectiveGenerator;
+  window.mv.customDirectiveGenerator = customDirectiveGenerator;
+  window.mv.jQuery = jQuery;
 
 
   tinyMce4Wysiwyg.prototype = {
@@ -225,8 +229,11 @@ define([
       var settings,
           eventBus = this.eventBus;
 
+          
+
 
           let mwi = this.config.plugins.findIndex(plugin => plugin.name == 'magentowidget');
+          let mvi = this.config.plugins.findIndex(plugin => plugin.name == 'magentovariable');
 
           
 
@@ -238,11 +245,12 @@ define([
         varienGlobalEvents,
         wysiwyg: this,
         mwOpts: this.config.plugins[mwi].options,
+        mvOpts: this.config.plugins[mvi].options,
 
         // plugins: 'magentowidget',
         external_plugins: {
           magentowidget : '/upload/plugins/magentowidgets',
-          // magentovariable: ''
+          magentovariable: '/upload/plugins/magentovariables'
         },
         "toolbar": [
           "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",

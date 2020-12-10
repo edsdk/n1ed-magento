@@ -243,7 +243,7 @@ tinymce.create('tinymce.plugins.magentowidget', {
         };
     }
 });
-console.log('lol magento')
+// console.log('lol magento')
 // Register plugin
 tinymce.PluginManager.add('magentowidget', tinymce.plugins.magentowidget);
 
