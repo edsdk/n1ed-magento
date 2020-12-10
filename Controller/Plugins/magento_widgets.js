@@ -80,7 +80,7 @@ tinymce.create('tinymce.plugins.magentowidget', {
          */
         editor.settings.varienGlobalEvents.attachEventHandler('wysiwygEncodeContent', function (content) {
 
-            debugger;
+            // debugger;
             content = self.encodeWidgets(self.decodeWidgets(content));
             content = self.removeDuplicateAncestorWidgetSpanElement(content);
 
