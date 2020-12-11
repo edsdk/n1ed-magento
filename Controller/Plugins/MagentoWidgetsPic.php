@@ -6,21 +6,21 @@ use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 
-class MagentoVariables extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
+
+class MagentoWidgetsPic extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
+
+protected $resultJsonFactory;
 
   /**
    * @param \Magento\Framework\App\Action\Context $context
-   * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
    */
   public function __construct(\Magento\Framework\App\Action\Context $context) {
-    parent::__construct($context);   
+    parent::__construct($context);
   }
 
-
   public function execute() {
-
-    header('Content-Type: application/javascript');
-    echo file_get_contents(__DIR__ . '/MagentoVariables.js');
+    header('Content-Type: image/png');
+    echo file_get_contents(__DIR__ . '/MagentoWidgets.png');
    
   }
 
