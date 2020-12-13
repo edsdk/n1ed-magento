@@ -32,7 +32,7 @@
 <field
           id="key"
           translate="label"
-          type="label"
+          type="text"
           sortOrder="1"
           showInDefault="1"
           showInWebsite="0"
@@ -44,7 +44,7 @@
                 <field
           id="token"
           translate="label"
-          type="label"
+          type="text"
           sortOrder="1"
           showInDefault="1"
           showInWebsite="0"

@@ -5,11 +5,11 @@
 <script>
 window.attachN1EDCmsConf({
         el: document.getElementById("cms-conf-placeholder"),
-        urlSetApiKeyAndToken:  '/setApiKey.php',
+        urlSetApiKeyAndToken:  '/extras/auth/save',
         apiKey: '<?php echo $this->getApi(); ?>',
         token: '<?php echo $this->getToken(); ?>',
         editorName: 'tinymce', // or 'ckeditor' if you use it as base editor
-        integration: 'your-cms-name', // your CMS name in lowercase, type once and do not change in future please
+        integration: 'magento', // your CMS name in lowercase, type once and do not change in future please
         isCheckBoxN1EDEcoEnabledVisible: false,
         checkBoxN1EDEcoEnabledTitle: null,
         checkBoxN1EDEcoEnabledValue: null,
