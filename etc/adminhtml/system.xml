@@ -8,7 +8,7 @@
             <label>EdSDK</label>
         </tab>
         <section
-      id="helloworld"
+      id="edsdk"
       translate="label"
       sortOrder="130"
       showInDefault="1"
@@ -32,25 +32,25 @@
 <field
           id="key"
           translate="label"
-          type="text"
+          type="label"
           sortOrder="1"
           showInDefault="1"
           showInWebsite="0"
           showInStore="0"
         >
-                    <label>API KEY</label>
+                    <label>API KEY:</label>
                     <!-- <comment>This text will display on the frontend.</comment> -->
                 </field>
                 <field
           id="token"
           translate="label"
-          type="text"
+          type="label"
           sortOrder="1"
           showInDefault="1"
           showInWebsite="0"
           showInStore="0"
         >
-                    <label>TOKEN</label>
+                    <label>TOKEN:</label>
                     <!-- <comment>This text will display on the frontend.</comment> -->
                 </field>
             </group>
