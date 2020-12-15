@@ -1,6 +1,6 @@
 <?php 
-
 namespace EdSDK\Wysiwyg\Controller\Auth;
+
 
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
@@ -8,6 +8,7 @@ use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Customer\Model\Session;
 
 class Get extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
 
@@ -20,6 +21,9 @@ class Get extends \Magento\Framework\App\Action\Action implements CsrfAwareActio
 
   protected $configWriter;
 
+  protected $authSession;
+  protected $customerSession;
+
   /**
    * @param \Magento\Framework\App\Action\Context $context
    * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
@@ -28,14 +32,20 @@ class Get extends \Magento\Framework\App\Action\Action implements CsrfAwareActio
    \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
    ScopeConfigInterface $scopeConfig,
     WriterInterface $configWriter,
-    TypeListInterface $cacheTypeList
+    TypeListInterface $cacheTypeList,
+    \Magento\Backend\Model\Auth\Session $authSession
    ) 
   {
     parent::__construct($context);
+
+    
     $this->scopeConfig = $scopeConfig;
     $this->configWriter = $configWriter;
 
     $this->cacheTypeList = $cacheTypeList;
+
+    $this->authSession = $authSession;
+
   }
 
 
@@ -54,6 +64,10 @@ class Get extends \Magento\Framework\App\Action\Action implements CsrfAwareActio
   public function execute() {
 
 
+  
+    if(array_key_exists('admin',$_SESSION) && count($_SESSION['admin']) > 0){
+
+
     $apiKey = $this->scopeConfig->getValue(
       'edsdk\general\key',
       \Magento\Store\Model\ScopeInterface::SCOPE_STORE
@@ -70,7 +84,13 @@ class Get extends \Magento\Framework\App\Action\Action implements CsrfAwareActio
     $this->configWriter->save('edsdk\general\key', $apiKey, $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
     $this->configCacheClear();
 }
-    echo json_encode(['apiKey' => $apiKey, 'token' => $token]);
+echo json_encode(['apiKey' => $apiKey, 'token' => $token]);
+} else {
+  echo 'No auth';
+}
+
+    
+ 
   }
 
   /**

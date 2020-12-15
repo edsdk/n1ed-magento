@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
+>
+    <event name="backend_auth_user_login_success">
+        <observer
+      name="adminLogin"
+      instance="EdSDK\Wysiwyg\Observer\LoginEvent"
+    />
+    </event>
+        <event name="controller_postdispatch_admin_index_logout">
+        <observer
+      name="adminLogout"
+      instance="EdSDK\Wysiwyg\Observer\LogoutEvent"
+    />
+    </event>
+    
+</config>

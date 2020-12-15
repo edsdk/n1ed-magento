@@ -52,9 +52,15 @@ class Save extends \Magento\Framework\App\Action\Action implements CsrfAwareActi
 
   public function execute() {
 
+    if(array_key_exists('admin',$_SESSION) && count($_SESSION['admin']) > 0){
+
     $this->configWriter->save('edsdk\general\key', $_REQUEST['n1edApiKey'], $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
     $this->configWriter->save('edsdk\general\token', $_REQUEST['n1edToken'], $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
     $this->configCacheClear();
+
+    } else {
+      echo 'No auth';
+    }
   }
 
   /**
