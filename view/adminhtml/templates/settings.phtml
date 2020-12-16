@@ -3,9 +3,11 @@
 
 <script src='https://n1ed.com/js/n1ed-cms-conf-3.js'></script>
 <script>
+
+var authUrl = `/${window.location.pathname.split("/")[1]}/edsdk/auth/save`;
 window.attachN1EDCmsConf({
         el: document.getElementById("cms-conf-placeholder"),
-        urlSetApiKeyAndToken:  '/extras/auth/save',
+        urlSetApiKeyAndToken:  authUrl,
         apiKey: '<?php echo $this->getApi(); ?>',
         token: '<?php echo $this->getToken(); ?>',
         editorName: 'tinymce', // or 'ckeditor' if you use it as base editor

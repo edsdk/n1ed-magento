@@ -68,9 +68,6 @@ class Index extends Action implements HttpGetActionInterface
         foreach ($types as $type) {
             $this->cacheTypeList->cleanType($type);
         }
-        // foreach ($this->cacheFrontendPool as $cacheFrontend) {
-        //     $cacheFrontend->getBackend()->clean();
-        // }
     }
 
     /**
@@ -97,14 +94,11 @@ class Index extends Action implements HttpGetActionInterface
             $this->configCacheClear();
         }
 
-        // die(var_dump($apiKey));
 
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu(static::MENU_ID);
-
         $resultPage->getLayout()->getBlock('EdSDK_settings')->setApi($apiKey);
         $resultPage->getLayout()->getBlock('EdSDK_settings')->setToken($token);
-        // $resultPage->getConfig()->getTitle()->prepend(__(''));
 
         return $resultPage;
     }

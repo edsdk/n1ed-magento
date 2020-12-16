@@ -28,8 +28,10 @@ define([
      * @param {Object} config
      */
     initialize: function (htmlId, config) {
+      let authUrl = `/${window.location.pathname.split("/")[1]}/edsdk/auth/get`;
+
       var request = new XMLHttpRequest();
-      request.open("GET", "/extras/auth/get", false); // `false` makes the request synchronous
+      request.open("GET", authUrl, false); // `false` makes the request synchronous
 
       request.send(null);
       const { apiKey, token } = JSON.parse(request.responseText);
