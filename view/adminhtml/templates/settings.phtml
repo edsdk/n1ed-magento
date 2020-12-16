@@ -3,8 +3,15 @@
 
 <script src='https://n1ed.com/js/n1ed-cms-conf-3.js'></script>
 <script>
+function findAdminURL(){
+  let regexp = new RegExp('admin*');
+  let path = window.location.pathname.split("/");
+  return path.find(p => regexp.test(p));
+}
 
-var authUrl = `/${window.location.pathname.split("/")[1]}/edsdk/auth/save`;
+let adminURL = findAdminURL();
+
+var authUrl = `/${adminURL}/edsdk/auth/save`;
 window.attachN1EDCmsConf({
         el: document.getElementById("cms-conf-placeholder"),
         urlSetApiKeyAndToken:  authUrl,

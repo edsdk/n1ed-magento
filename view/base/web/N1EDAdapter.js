@@ -28,7 +28,14 @@ define([
      * @param {Object} config
      */
     initialize: function (htmlId, config) {
-      let authUrl = `/${window.location.pathname.split("/")[1]}/edsdk/auth/get`;
+      function findAdminURL() {
+        let regexp = new RegExp("admin*");
+        let path = window.location.pathname.split("/");
+        return path.find((p) => regexp.test(p));
+      }
+
+      let adminURL = findAdminURL();
+      let authUrl = `/${adminURL}/edsdk/auth/get`;
 
       var request = new XMLHttpRequest();
       request.open("GET", authUrl, false); // `false` makes the request synchronous
