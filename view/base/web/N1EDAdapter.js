@@ -28,27 +28,13 @@ define([
      * @param {Object} config
      */
     initialize: function (htmlId, config) {
-      function findAdminURL() {
-        let regexp = new RegExp("admin*");
-        let path = window.location.pathname.split("/");
-        return path.find((p) => regexp.test(p));
-      }
-
-      function URLPrecedingsDetect() {
-        let regexp = new RegExp("index*");
-        let path = window.location.pathname.split("/");
-        return path.find((p) => regexp.test(p));
-      }
-
-      let adminURL;
-
       if (URLPrecedingsDetect()) {
-        adminURL = `${URLPrecedingsDetect()}/${findAdminURL()}`;
+        this.adminURL = `${URLPrecedingsDetect()}/${findAdminURL()}`;
       } else {
-        adminURL = `${findAdminURL()}`;
+        this.adminURL = `${findAdminURL()}`;
       }
 
-      var authUrl = `/${adminURL}/edsdk/auth/get`;
+      var authUrl = `/${this.adminURL}/edsdk/auth/get`;
 
       var request = new XMLHttpRequest();
       request.open("GET", authUrl, false); // `false` makes the request synchronous
@@ -226,9 +212,11 @@ define([
         (plugin) => plugin.name == "magentovariable"
       );
 
+      var flmngrURL = `/${this.adminURL}/edsdk/flmngr/upload`;
+
       settings = {
         selector: "#" + this.getId(),
-        urlFileManager: "/flmngr/flmngr/upload",
+        urlFileManager: flmngrURL,
         urlFiles: "/pub/media/wysiwyg/",
         relative_urls: false,
         apiKey: this.config.apiKey,
@@ -250,8 +238,6 @@ define([
           "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
           "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | magentowidget magentovariable",
         ],
-
-        // toolbar: this.config.tinymce4.toolbar,
 
         /**
          * @param {Object} editor
@@ -889,4 +875,16 @@ function includeJS(urlJS, doc, callback) {
     }
     return null;
   }
+}
+
+function findAdminURL() {
+  let regexp = new RegExp("admin*");
+  let path = window.location.pathname.split("/");
+  return path.find((p) => regexp.test(p));
+}
+
+function URLPrecedingsDetect() {
+  let regexp = new RegExp("index*");
+  let path = window.location.pathname.split("/");
+  return path.find((p) => regexp.test(p));
 }

@@ -11,18 +11,9 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\App\Cache\Frontend\Pool;
 
-/**
- * Class Index
- */
 class Index extends Action implements HttpGetActionInterface
 {
     const MENU_ID = 'EdSDK_Wysiwyg::edsdk_wysiwyg';
-
-    /**
-     * @var PageFactory
-     * 
-     * 
-     */
 
     protected $cacheTypeList;
     protected $cacheFrontendPool;
@@ -32,14 +23,6 @@ class Index extends Action implements HttpGetActionInterface
 
     protected $configWriter;
 
-
-
-    /**
-     * Index constructor.
-     *
-     * @param Context $context
-     * @param PageFactory $resultPageFactory
-     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
@@ -47,7 +30,7 @@ class Index extends Action implements HttpGetActionInterface
         WriterInterface $configWriter,
         TypeListInterface $cacheTypeList,
         Pool $cacheFrontendPool
-        ) {
+    ) {
         parent::__construct($context);
 
         $this->resultPageFactory = $resultPageFactory;
@@ -64,20 +47,14 @@ class Index extends Action implements HttpGetActionInterface
     private function configCacheClear()
     {
         $types = ['config'];
- 
+
         foreach ($types as $type) {
             $this->cacheTypeList->cleanType($type);
         }
     }
 
-    /**
-     * Load the page defined in view/adminhtml/layout/exampleadminnewpage_helloworld_index.xml
-     *
-     * @return Page
-     */
     public function execute()
     {
-
         $apiKey = $this->scopeConfig->getValue(
             'edsdk\general\key',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
@@ -88,17 +65,27 @@ class Index extends Action implements HttpGetActionInterface
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
 
-        if(!$apiKey){
+        if (!$apiKey) {
             $apiKey = 'N1EDDFLT';
-            $this->configWriter->save('edsdk\general\key', $apiKey, $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
+            $this->configWriter->save(
+                'edsdk\general\key',
+                $apiKey,
+                $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+                $scopeId = 0
+            );
             $this->configCacheClear();
         }
 
-
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu(static::MENU_ID);
-        $resultPage->getLayout()->getBlock('EdSDK_settings')->setApi($apiKey);
-        $resultPage->getLayout()->getBlock('EdSDK_settings')->setToken($token);
+        $resultPage
+            ->getLayout()
+            ->getBlock('EdSDK_settings')
+            ->setApi($apiKey);
+        $resultPage
+            ->getLayout()
+            ->getBlock('EdSDK_settings')
+            ->setToken($token);
 
         return $resultPage;
     }

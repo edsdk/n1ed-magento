@@ -1,51 +1,35 @@
-<?php /**
- * Copyright © 2016 Magento. All rights reserved.
- * See COPYING.txt for license details.
- */
+<?php
 
 namespace EdSDK\Wysiwyg\Controller\Plugins;
 
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
-use Magento\Framework\Module\Dir;
 
-class MagentoWidgets extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface {
+class MagentoWidgets extends \Magento\Framework\App\Action\Action implements
+    CsrfAwareActionInterface
+{
+    protected $resultJsonFactory;
 
+    public function __construct(\Magento\Framework\App\Action\Context $context)
+    {
+        parent::__construct($context);
+    }
 
-  /**
-   * @var \Magento\Framework\Controller\Result\JsonFactory
-   */
-  protected $resultJsonFactory;
+    public function execute()
+    {
+        header('Content-Type: application/javascript');
+        echo file_get_contents(__DIR__ . '/MagentoWidgets.js');
+    }
 
-  /**
-   * @param \Magento\Framework\App\Action\Context $context
-   * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
-   */
-  public function __construct(\Magento\Framework\App\Action\Context $context, \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory, Dir $moduleDir) {
-    parent::__construct($context);
-   
-  }
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException {
+        return null;
+    }
 
-
-  public function execute() {
-
-    header('Content-Type: application/javascript');
-    echo file_get_contents(__DIR__ . '/MagentoWidgets.js');
-   
-  }
-
-  /**
-   * View  page action
-   *
-   * @return \Magento\Framework\Controller\ResultInterface
-   */
-  public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException {
-    return NULL;
-  }
-
-  public function validateForCsrf(RequestInterface $request): ?bool {
-    return TRUE;
-  }
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
+    }
 }
-

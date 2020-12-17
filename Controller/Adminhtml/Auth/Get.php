@@ -75,9 +75,6 @@ class Get extends Action implements HttpGetActionInterface
       } 
 
       parent::__construct($context);
-
-    
-
   }
 
 

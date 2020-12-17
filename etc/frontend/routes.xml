@@ -4,9 +4,6 @@
   xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd"
 >
     <router id="standard">
-                    <route frontName="flmngr" id="flmngr">
-            <module name="EdSDK_Wysiwyg" />
-        </route>
         <route frontName="extras" id="extras">
             <module name="EdSDK_Wysiwyg" />
         </route>
