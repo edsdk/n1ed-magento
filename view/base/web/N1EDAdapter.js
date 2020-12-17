@@ -6,12 +6,12 @@ define([
   "Magento_Variable/js/config-directive-generator",
   "Magento_Variable/js/custom-directive-generator",
 ], function (
-  jQuery,
-  _,
-  varienGlobalEvents,
-  wysiwygEvents,
-  configDirectiveGenerator,
-  customDirectiveGenerator
+    jQuery,
+    _,
+    varienGlobalEvents,
+    wysiwygEvents,
+    configDirectiveGenerator,
+    customDirectiveGenerator
 ) {
   "use strict";
 
@@ -30,7 +30,8 @@ define([
     initialize: function (htmlId, config) {
       if (URLPrecedingsDetect()) {
         this.adminURL = `${URLPrecedingsDetect()}/${findAdminURL()}`;
-      } else {
+      }
+      else {
         this.adminURL = `${findAdminURL()}`;
       }
 
@@ -38,14 +39,13 @@ define([
 
       var request = new XMLHttpRequest();
       request.open("GET", authUrl, false); // `false` makes the request synchronous
-
       request.send(null);
-      const { apiKey, token } = JSON.parse(request.responseText);
+      const {apiKey, token} = JSON.parse(request.responseText);
 
       includeJS(
-        `https://cloud.n1ed.com/cdn/${apiKey}/n1tinymce.js`,
-        document,
-        function () {}
+          `https://cloud.n1ed.com/cdn/${apiKey}/n1tinymce.js`,
+          document,
+          function () {}
       );
 
       this.id = htmlId;
@@ -54,31 +54,31 @@ define([
       this.config.token = token;
 
       _.bindAll(
-        this,
-        "beforeSetContent",
-        "saveContent",
-        "onChangeContent",
-        "openFileBrowser",
-        "updateTextArea",
-        "onUndo",
-        "removeEvents"
+          this,
+          "beforeSetContent",
+          "saveContent",
+          "onChangeContent",
+          "openFileBrowser",
+          "updateTextArea",
+          "onUndo",
+          "removeEvents"
       );
 
       varienGlobalEvents.attachEventHandler(
-        "tinymceChange",
-        this.onChangeContent
+          "tinymceChange",
+          this.onChangeContent
       );
       varienGlobalEvents.attachEventHandler(
-        "tinymceBeforeSetContent",
-        this.beforeSetContent
+          "tinymceBeforeSetContent",
+          this.beforeSetContent
       );
       varienGlobalEvents.attachEventHandler(
-        "tinymceSetContent",
-        this.updateTextArea
+          "tinymceSetContent",
+          this.updateTextArea
       );
       varienGlobalEvents.attachEventHandler(
-        "tinymceSaveContent",
-        this.saveContent
+          "tinymceSaveContent",
+          this.saveContent
       );
       varienGlobalEvents.attachEventHandler("tinymceUndo", this.onUndo);
 
@@ -110,7 +110,8 @@ define([
       function waitForEditor(settings) {
         if (window.tinymce) {
           setupNow(settings);
-        } else {
+        }
+        else {
           setTimeout(function () {
             waitForEditor(settings);
           }, 100);
@@ -129,13 +130,13 @@ define([
       var editor;
 
       if (
-        typeof tinyMceEditors !== "undefined" &&
-        tinyMceEditors.get(wysiwygId)
+          typeof tinyMceEditors !== "undefined" &&
+          tinyMceEditors.get(wysiwygId)
       ) {
         editor = tinyMceEditors.get(wysiwygId);
         varienGlobalEvents.removeEventHandler(
-          "tinymceChange",
-          editor.onChangeContent
+            "tinymceChange",
+            editor.onChangeContent
         );
       }
     },
@@ -148,7 +149,7 @@ define([
      */
     addPluginToToolbar: function (plugin, separator) {
       var plugins = this.config.tinymce4.plugins.split(" "),
-        toolbar = this.config.tinymce4.toolbar.split(" ");
+          toolbar = this.config.tinymce4.toolbar.split(" ");
 
       if (plugins.indexOf(plugin) === -1) {
         plugins.push(plugin);
@@ -169,7 +170,7 @@ define([
      */
     setToolbarStatus: function (enabled) {
       var controlIds = this.get(this.getId()).theme.panel.rootControl
-        .controlIdLookup;
+          .controlIdLookup;
 
       _.each(controlIds, function (controlId) {
         controlId.disabled(!enabled);
@@ -180,19 +181,20 @@ define([
 
           if (enabled) {
             jQuery(controlId.getEl())
-              .children("button")
-              .andSelf()
-              .removeAttr("style");
-          } else {
+                .children("button")
+                .andSelf()
+                .removeAttr("style");
+          }
+          else {
             jQuery(controlId.getEl())
-              .children("button")
-              .andSelf()
-              .attr(
-                "style",
-                "color: inherit;" +
-                  "background-color: inherit;" +
-                  "border-color: transparent;"
-              );
+                .children("button")
+                .andSelf()
+                .attr(
+                    "style",
+                    "color: inherit;" +
+                    "background-color: inherit;" +
+                    "border-color: transparent;"
+                );
           }
         }
       });
@@ -203,13 +205,13 @@ define([
      */
     getSettings: function () {
       var settings,
-        eventBus = this.eventBus;
+          eventBus = this.eventBus;
 
       let mwi = this.config.plugins.findIndex(
-        (plugin) => plugin.name == "magentowidget"
+          (plugin) => plugin.name == "magentowidget"
       );
       let mvi = this.config.plugins.findIndex(
-        (plugin) => plugin.name == "magentovariable"
+          (plugin) => plugin.name == "magentovariable"
       );
 
       var flmngrURL = `/${this.adminURL}/edsdk/flmngr/upload`;
@@ -295,8 +297,8 @@ define([
 
           editor.on("init", function (args) {
             varienGlobalEvents.fireEvent(
-              "wysiwygEditorInitialized",
-              args.target
+                "wysiwygEditorInitialized",
+                args.target
             );
             eventBus.fireEvent(wysiwygEvents.afterInitialization);
           });
@@ -350,9 +352,9 @@ define([
      */
     getId: function () {
       return (
-        this.id ||
-        (this.activeEditor() ? this.activeEditor().id : null) ||
-        tinyMceEditors.values()[0].id
+          this.id ||
+          (this.activeEditor() ? this.activeEditor().id : null) ||
+          tinyMceEditors.values()[0].id
       );
     },
 
@@ -371,9 +373,9 @@ define([
      */
     insertContent: function (content, ui) {
       this.activeEditor().execCommand(
-        "mceInsertContent",
-        typeof ui !== "undefined" ? ui : false,
-        content
+          "mceInsertContent",
+          typeof ui !== "undefined" ? ui : false,
+          content
       );
     },
 
@@ -401,17 +403,17 @@ define([
      */
     openFileBrowser: function (o) {
       var typeTitle = this.translate("Select Images"),
-        storeId = this.config["store_id"] ? this.config["store_id"] : 0,
-        frameDialog = jQuery('div.mce-container[role="dialog"]'),
-        self = this,
-        wUrl =
-          this.config["files_browser_window_url"] +
-          "target_element_id/" +
-          this.getId() +
-          "/" +
-          "store/" +
-          storeId +
-          "/";
+          storeId = this.config["store_id"] ? this.config["store_id"] : 0,
+          frameDialog = jQuery('div.mce-container[role="dialog"]'),
+          self = this,
+          wUrl =
+              this.config["files_browser_window_url"] +
+              "target_element_id/" +
+              this.getId() +
+              "/" +
+              "store/" +
+              storeId +
+              "/";
 
       this.mediaBrowserOpener = o.win;
       this.mediaBrowserTargetElementId = o.field;
@@ -496,9 +498,9 @@ define([
      */
     closeEditorPopup: function (name) {
       if (
-        typeof popups !== "undefined" &&
-        popups[name] !== undefined &&
-        !popups[name].closed
+          typeof popups !== "undefined" &&
+          popups[name] !== undefined &&
+          !popups[name].closed
       ) {
         popups[name].close();
       }
@@ -539,8 +541,8 @@ define([
       }
 
       content = this.get(this.getId())
-        ? this.get(this.getId()).getContent()
-        : this.getTextArea().val();
+          ? this.get(this.getId()).getContent()
+          : this.getTextArea().val();
 
       this.turnOff();
 
@@ -600,8 +602,8 @@ define([
      */
     getContent: function (id) {
       return id
-        ? this.get(id).getContent()
-        : this.get(this.getId()).getContent();
+          ? this.get(id).getContent()
+          : this.get(this.getId()).getContent();
     },
 
     /**
@@ -617,20 +619,20 @@ define([
      */
     fixRangeSelection: function (editor) {
       var selection = editor.selection,
-        dom = editor.dom,
-        rng = dom.createRng(),
-        doc = editor.getDoc(),
-        markerHtml,
-        marker;
+          dom = editor.dom,
+          rng = dom.createRng(),
+          doc = editor.getDoc(),
+          markerHtml,
+          marker;
 
       // Validate the range we're trying to fix is contained within the current
       // editors document
       if (
-        !selection.getContent().length &&
-        jQuery.contains(doc, selection.getRng().startContainer)
+          !selection.getContent().length &&
+          jQuery.contains(doc, selection.getRng().startContainer)
       ) {
         markerHtml =
-          '<span id="mce_marker" data-mce-type="bookmark">\uFEFF</span>';
+            '<span id="mce_marker" data-mce-type="bookmark">\uFEFF</span>';
         selection.setContent(markerHtml);
         marker = dom.get("mce_marker");
         rng.setStartBefore(marker);
@@ -645,7 +647,7 @@ define([
      */
     updateTextArea: function () {
       var editor = this.get(this.getId()),
-        content;
+          content;
 
       if (!editor || editor.id !== this.activeEditor().id) {
         return;
@@ -680,7 +682,8 @@ define([
 
       if (enabled) {
         this.getTextArea().removeProp("disabled");
-      } else {
+      }
+      else {
         this.getTextArea().prop("disabled", "disabled");
       }
     },
@@ -692,8 +695,8 @@ define([
      */
     makeDirectiveUrl: function (directive) {
       return this.config["directives_url"]
-        .replace(/directive/, "directive/___directive/" + directive)
-        .replace(/\/$/, "");
+          .replace(/directive/, "directive/___directive/" + directive)
+          .replace(/\/$/, "");
     },
 
     /**
@@ -704,31 +707,31 @@ define([
     encodeDirectives: function (content) {
       // collect all HTML tags with attributes that contain directives
       return content.gsub(
-        /<([a-z0-9\-\_]+[^>]+?)([a-z0-9\-\_]+="[^"]*?\{\{.+?\}\}.*?".*?)>/i,
-        function (match) {
-          var attributesString = match[2],
-            decodedDirectiveString;
+          /<([a-z0-9\-\_]+[^>]+?)([a-z0-9\-\_]+="[^"]*?\{\{.+?\}\}.*?".*?)>/i,
+          function (match) {
+            var attributesString = match[2],
+                decodedDirectiveString;
 
-          // process tag attributes string
-          attributesString = attributesString.gsub(
-            /([a-z0-9\-\_]+)="(.*?)(\{\{.+?\}\})(.*?)"/i,
-            function (m) {
-              decodedDirectiveString = encodeURIComponent(
-                Base64.mageEncode(m[3].replace(/&quot;/g, '"') + m[4])
-              );
+            // process tag attributes string
+            attributesString = attributesString.gsub(
+                /([a-z0-9\-\_]+)="(.*?)(\{\{.+?\}\})(.*?)"/i,
+                function (m) {
+                  decodedDirectiveString = encodeURIComponent(
+                      Base64.mageEncode(m[3].replace(/&quot;/g, '"') + m[4])
+                  );
 
-              return (
-                m[1] +
-                '="' +
-                m[2] +
-                this.makeDirectiveUrl(decodedDirectiveString) +
-                '"'
-              );
-            }.bind(this)
-          );
+                  return (
+                      m[1] +
+                      '="' +
+                      m[2] +
+                      this.makeDirectiveUrl(decodedDirectiveString) +
+                      '"'
+                  );
+                }.bind(this)
+            );
 
-          return "<" + match[1] + attributesString + ">";
-        }.bind(this)
+            return "<" + match[1] + attributesString + ">";
+          }.bind(this)
       );
     },
 
@@ -739,25 +742,25 @@ define([
      */
     decodeDirectives: function (content) {
       var directiveUrl = this.makeDirectiveUrl("%directive%").split("?")[0], // remove
-        // query
-        // string
-        // from
-        // directive
-        // escape special chars in directives url to use in regular expression
-        regexEscapedDirectiveUrl = directiveUrl.replace(
-          /([$^.?*!+:=()\[\]{}|\\])/g,
-          "\\$1"
-        ),
-        regexDirectiveUrl =
-          regexEscapedDirectiveUrl.replace(
-            "%directive%",
-            '([a-zA-Z0-9,_-]+(?:%2[A-Z]|)+/?)(?:(?!").)*'
-          ) + '/?(\\\\?[^"]*)?', // allow optional query string
-        reg = new RegExp(regexDirectiveUrl);
+          // query
+          // string
+          // from
+          // directive
+          // escape special chars in directives url to use in regular expression
+          regexEscapedDirectiveUrl = directiveUrl.replace(
+              /([$^.?*!+:=()\[\]{}|\\])/g,
+              "\\$1"
+          ),
+          regexDirectiveUrl =
+              regexEscapedDirectiveUrl.replace(
+                  "%directive%",
+                  '([a-zA-Z0-9,_-]+(?:%2[A-Z]|)+/?)(?:(?!").)*'
+              ) + '/?(\\\\?[^"]*)?', // allow optional query string
+          reg = new RegExp(regexDirectiveUrl);
 
       return content.gsub(reg, function (match) {
         return Base64.mageDecode(
-          decodeURIComponent(match[1]).replace(/\/$/, "")
+            decodeURIComponent(match[1]).replace(/\/$/, "")
         ).replace(/"/g, "&quot;");
       });
     },
@@ -773,10 +776,10 @@ define([
       attributes = attributes.replace(/&quot;/g, '"');
 
       attributes.gsub(
-        /(\w+)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/,
-        function (match) {
-          result[match[1]] = match[2];
-        }
+          /(\w+)(?:\s*=\s*(?:(?:"((?:\\.|[^"])*)")|(?:'((?:\\.|[^'])*)')|([^>\s]+)))?/,
+          function (match) {
+            result[match[1]] = match[2];
+          }
       );
 
       return result;
@@ -792,8 +795,8 @@ define([
       }
 
       content = varienGlobalEvents.fireEventReducer(
-        "wysiwygDecodeContent",
-        content
+          "wysiwygDecodeContent",
+          content
       );
 
       return content;
@@ -809,8 +812,8 @@ define([
       }
 
       content = varienGlobalEvents.fireEventReducer(
-        "wysiwygEncodeContent",
-        content
+          "wysiwygEncodeContent",
+          content
       );
 
       return content;
@@ -821,8 +824,8 @@ define([
      */
     addContentEditableAttributeBackToNonEditableNodes: function () {
       jQuery(".mceNonEditable", this.activeEditor().getDoc()).attr(
-        "contenteditable",
-        false
+          "contenteditable",
+          false
       );
     },
   };
@@ -852,14 +855,15 @@ function includeJS(urlJS, doc, callback) {
         // IE
         script.onreadystatechange = function () {
           if (
-            script.readyState === "loaded" ||
-            script.readyState === "complete"
+              script.readyState === "loaded" ||
+              script.readyState === "complete"
           ) {
             script.onreadystatechange = null;
             callback(false);
           }
         };
-      } else {
+      }
+      else {
         // Others
         script.onload = function () {
           callback(false);
@@ -869,7 +873,8 @@ function includeJS(urlJS, doc, callback) {
     script.src = urlJS;
     doc.getElementsByTagName("head")[0].appendChild(script);
     return script;
-  } else {
+  }
+  else {
     if (callback != null) {
       callback(true);
     }

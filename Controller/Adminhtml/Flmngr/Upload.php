@@ -15,60 +15,48 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Backend\Model\Auth\Session;
 
-class Upload extends Action implements HttpPostActionInterface
-{
-    protected $_publicActions = ['upload'];
+class Upload extends Action implements HttpPostActionInterface {
 
-    protected $_openActions = ['upload'];
+  protected $_publicActions = ['upload'];
 
-    protected $dirFiles;
+  protected $_openActions = ['upload'];
 
-    protected $dirTmp;
+  protected $dirFiles;
 
-    protected $dirCache;
+  protected $dirTmp;
 
-    public function __construct(Context $context, Session $authSession)
-    {
-        if ($authSession->isLoggedIn()) {
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+  protected $dirCache;
 
-            $dir = $objectManager->get(
-                '\Magento\Framework\Filesystem\DirectoryList'
-            );
+  public function __construct(Context $context, Session $authSession) {
+    if ($authSession->isLoggedIn()) {
+      $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
-            $this->createDirIfNotExist(
-                $this->dirFiles = $dir->getPath('media') . '/wysiwyg'
-            );
+      $dir = $objectManager->get('\Magento\Framework\Filesystem\DirectoryList');
 
-            $this->createDirIfNotExist(
-                $this->dirCache = $dir->getPath('cache') . '/wysiwyg'
-            );
+      $this->createDirIfNotExist($this->dirFiles = $dir->getPath('media') . '/wysiwyg');
 
-            $this->createDirIfNotExist(
-                $this->dirTmp = $dir->getPath('tmp') . '/wysiwyg'
-            );
+      $this->createDirIfNotExist($this->dirCache = $dir->getPath('cache') . '/wysiwyg');
 
-            die(
-                FlmngrServer::flmngrRequest([
-                    'dirFiles' => $this->dirFiles,
-                    'dirTmp' => $this->dirTmp,
-                    'dirCache' => $this->dirCache,
-                ])
-            );
-        } else {
-            die('No auth');
-        }
-        parent::__construct($context);
+      $this->createDirIfNotExist($this->dirTmp = $dir->getPath('tmp') . '/wysiwyg');
+
+      die(FlmngrServer::flmngrRequest([
+        'dirFiles' => $this->dirFiles,
+        'dirTmp' => $this->dirTmp,
+        'dirCache' => $this->dirCache,
+      ]));
     }
-
-    private function createDirIfNotExist(string $path): void
-    {
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
+    else {
+      die('No auth');
     }
+    parent::__construct($context);
+  }
 
-    public function execute()
-    {
+  private function createDirIfNotExist(string $path): void {
+    if (!file_exists($path)) {
+      mkdir($path, 0777, TRUE);
     }
+  }
+
+  public function execute() {
+  }
 }
