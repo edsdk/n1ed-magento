@@ -15,7 +15,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Backend\Model\Auth\Session;
 
-class Upload extends Action implements HttpPostActionInterface
+class Flmngr extends Action implements HttpPostActionInterface
 {
     protected $_publicActions = ['upload'];
 

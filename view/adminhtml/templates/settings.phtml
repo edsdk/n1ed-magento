@@ -17,28 +17,26 @@ justify-content: right;">
 <script src='https://n1ed.com/js/n1ed-cms-conf-3.js'></script>
 <script>
 function findAdminURL(){
-  let regexp = new RegExp('admin*');
-  let path = window.location.pathname.split("/");
-  return path.find(p => regexp.test(p));
+  var regexp = new RegExp('admin*');
+  var path = window.location.pathname.split("/");
+  return path.find(function (p){ return regexp.test(p)});
 }
 
 function URLPrecedingsDetect() {
-        let regexp = new RegExp("index*");
-        let path = window.location.pathname.split("/");
-        return path.find((p) => regexp.test(p));
+        var regexp = new RegExp("index*");
+        var path = window.location.pathname.split("/");
+        return path.find(function(p){return regexp.test(p)});
       }
 
-      let adminURL;
-
+      var adminURL;
       if (URLPrecedingsDetect()) {
-        adminURL = `${URLPrecedingsDetect()}/${findAdminURL()}`;
+        this.adminURL = URLPrecedingsDetect() + '/' + findAdminURL();
       } else {
-        adminURL = `${findAdminURL()}`;
+        this.adminURL = findAdminURL();
       }
 
-var authUrl = `/${adminURL}/edsdk/auth/save`;
-var funcSave;
-funcSave = window.attachN1EDCmsConf({
+      var authUrl = '/' + this.adminURL + '/edsdk/auth/save';
+var funcSave = window.attachN1EDCmsConf({
         el: document.getElementById("cms-conf-placeholder"),
         urlSetApiKeyAndToken:  authUrl,
         apiKey: '<?php echo $this->getApi(); ?>',
@@ -53,9 +51,8 @@ funcSave = window.attachN1EDCmsConf({
       });
 
 
-document.getElementById('n1edSave').addEventListener('click',() => {
-  // console.log(funcSave());
-  funcSave((e) => {
+document.getElementById('n1edSave').addEventListener('click',function(){
+  funcSave(function(e)  {
       if(e){
         alert('Configuration saved');
       } else {
