@@ -38,7 +38,6 @@ define([
 
       var request = new XMLHttpRequest();
       request.open("GET", authUrl, false); // `false` makes the request synchronous
-
       request.send(null);
       var apiKey = JSON.parse(request.responseText).apiKey;
       var token = JSON.parse(request.responseText).token;

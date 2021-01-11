@@ -1,4 +1,5 @@
 <?php
+
 namespace EdSDK\Wysiwyg\Controller\Adminhtml\Auth;
 
 use Magento\Backend\App\Action;
@@ -9,63 +10,47 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Backend\Model\Auth\Session;
 
-class Save extends Action implements HttpPostActionInterface
-{
-    protected $_publicActions = ['save'];
+class Save extends Action implements HttpPostActionInterface {
 
-    protected $cacheTypeList;
+  protected $_publicActions = ['save'];
 
-    protected $scopeConfig;
+  protected $cacheTypeList;
 
-    protected $configWriter;
+  protected $scopeConfig;
 
-    protected $authSession;
+  protected $configWriter;
 
-    public function __construct(
-        Context $context,
-        WriterInterface $configWriter,
-        TypeListInterface $cacheTypeList,
-        Session $authSession
-    ) {
-        $this->configWriter = $configWriter;
+  protected $authSession;
 
-        $this->cacheTypeList = $cacheTypeList;
+  public function __construct(Context $context, WriterInterface $configWriter, TypeListInterface $cacheTypeList, Session $authSession) {
+    $this->configWriter = $configWriter;
 
-        $this->authSession = $authSession;
+    $this->cacheTypeList = $cacheTypeList;
 
-        if ($this->authSession->isLoggedIn()) {
-            $this->configWriter->save(
-                'edsdk\general\key',
-                $_REQUEST['n1edApiKey'],
-                $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
-                $scopeId = 0
-            );
-            $this->configWriter->save(
-                'edsdk\general\token',
-                $_REQUEST['n1edToken'],
-                $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
-                $scopeId = 0
-            );
-            $this->configCacheClear();
+    $this->authSession = $authSession;
 
-            echo 'ok';
-        } else {
-            die('No auth');
-        }
+    if ($this->authSession->isLoggedIn()) {
+      $this->configWriter->save('edsdk\general\key', $_REQUEST['n1edApiKey'], $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
+      $this->configWriter->save('edsdk\general\token', $_REQUEST['n1edToken'], $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
+      $this->configCacheClear();
 
-        parent::__construct($context);
+      echo 'ok';
+    }
+    else {
+      die('No auth');
     }
 
-    private function configCacheClear()
-    {
-        $types = ['config'];
+    parent::__construct($context);
+  }
 
-        foreach ($types as $type) {
-            $this->cacheTypeList->cleanType($type);
-        }
-    }
+  private function configCacheClear() {
+    $types = ['config'];
 
-    public function execute()
-    {
+    foreach ($types as $type) {
+      $this->cacheTypeList->cleanType($type);
     }
+  }
+
+  public function execute() {
+  }
 }
