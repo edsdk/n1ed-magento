@@ -1,18 +1,14 @@
-
 <style>
-.n1ed-button.n1ed-button--primary {
-    background-color: #007FFF;
-    border-color: #007FFF;
-    color: white;
-}
+    .n1ed-button.n1ed-button--primary {
+        background-color: #007FFF;
+        border-color: #007FFF;
+        color: white;
+    }
 </style>
 <div id="cms-conf-placeholder"></div>
-<div style="display: flex;
-justify-content: right;">
-<button id='n1edSave' type="button" class="n1ed-button n1ed-button--primary"><span>Save</span></button>
+<div style="display: flex; justify-content: right;">
+    <button id='n1edSave' type="button" class="n1ed-button n1ed-button--primary"><span>Save</span></button>
 </div>
-
-
 
 <script src='https://n1ed.com/js/n1ed-cms-conf-3.js'></script>
 <script>
@@ -56,9 +52,9 @@ document.getElementById('n1edSave').addEventListener('click',function(){
   funcSave(function(e)  {
       if(e){
         alert('Configuration saved');
-      } else {
+      }else{
         alert('Error: configuration was not save');
-      }
+    }
+  })
   });
-});
 </script>

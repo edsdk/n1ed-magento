@@ -11,13 +11,15 @@
   ],
   "authors": [
     {
+      "name": "EdSDK/N1ED",
+      "role": "Company"
+    },
+    {
       "name": "Ilia Kandaurov",
-      "email": "ilia@kandaurov.su",
       "role": "Developer"
     },
     {
       "name": "Dmitriy Komarov",
-      "email": "contact@n1ed.com",
       "role": "Developer"
     }
   ],

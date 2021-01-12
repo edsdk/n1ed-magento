@@ -43,9 +43,10 @@ class Get extends Action implements HttpGetActionInterface
         $this->scopeConfig = $scopeConfig;
         $this->configWriter = $configWriter;
 
-        $this->cacheTypeList = $cacheTypeList;
+        $this->scopeConfig = $scopeConfig;
+        $this->configWriter = $configWriter;
 
-        $this->authSession = $authSession;
+        $this->cacheTypeList = $cacheTypeList;
 
         if ($this->authSession->isLoggedIn()) {
             $apiKey = $this->scopeConfig->getValue(
