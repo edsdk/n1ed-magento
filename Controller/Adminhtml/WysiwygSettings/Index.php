@@ -56,19 +56,19 @@ class Index extends Action implements HttpGetActionInterface
     public function execute()
     {
         $apiKey = $this->scopeConfig->getValue(
-            'edsdk\general\key',
+            'edsdk/general/key',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
 
         $token = $this->scopeConfig->getValue(
-            'edsdk\general\token',
+            'edsdk/general/token',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
 
         if (!$apiKey) {
             $apiKey = 'N1EDDFLT';
             $this->configWriter->save(
-                'edsdk\general\key',
+                'edsdk/general/key',
                 $apiKey,
                 $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
                 $scopeId = 0

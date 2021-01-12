@@ -29,21 +29,22 @@ define([
      */
     initialize: function (htmlId, config) {
       if (URLPrecedingsDetect()) {
-        this.adminURL = `${URLPrecedingsDetect()}/${findAdminURL()}`;
+        this.adminURL = URLPrecedingsDetect() + "/" + findAdminURL();
       } else {
-        this.adminURL = `${findAdminURL()}`;
+        this.adminURL = findAdminURL();
       }
 
-      var authUrl = `/${this.adminURL}/edsdk/auth/get`;
+      var authUrl = "/" + this.adminURL + "/edsdk/auth/get";
 
       var request = new XMLHttpRequest();
       request.open("GET", authUrl, false); // `false` makes the request synchronous
 
       request.send(null);
-      const { apiKey, token } = JSON.parse(request.responseText);
+      var apiKey = JSON.parse(request.responseText).apiKey;
+      var token = JSON.parse(request.responseText).token;
 
       includeJS(
-        `https://cloud.n1ed.com/cdn/${apiKey}/n1tinymce.js`,
+        "https://cloud.n1ed.com/cdn/" + apiKey + "/n1tinymce.js",
         document,
         function () {}
       );
@@ -205,14 +206,14 @@ define([
       var settings,
         eventBus = this.eventBus;
 
-      let mwi = this.config.plugins.findIndex(
-        (plugin) => plugin.name == "magentowidget"
-      );
-      let mvi = this.config.plugins.findIndex(
-        (plugin) => plugin.name == "magentovariable"
-      );
+      var mwi = this.config.plugins.findIndex(function (plugin) {
+        return plugin.name == "magentowidget";
+      });
+      var mvi = this.config.plugins.findIndex(function (plugin) {
+        return plugin.name == "magentovariable";
+      });
 
-      var flmngrURL = `/${this.adminURL}/edsdk/flmngr/upload`;
+      var flmngrURL = "/" + this.adminURL + "/edsdk/flmngr/flmngr";
 
       settings = {
         selector: "#" + this.getId(),
@@ -221,9 +222,9 @@ define([
         relative_urls: false,
         apiKey: this.config.apiKey,
         token: this.config.token,
-        varienGlobalEvents,
-        configDirectiveGenerator,
-        customDirectiveGenerator,
+        varienGlobalEvents: varienGlobalEvents,
+        configDirectiveGenerator: configDirectiveGenerator,
+        customDirectiveGenerator: customDirectiveGenerator,
         bootstrap4: {
           includeToGlobalDoc: false,
         },
@@ -853,7 +854,7 @@ function includeJS(urlJS, doc, callback) {
         script.onreadystatechange = function () {
           if (
             script.readyState === "loaded" ||
-            script.readyState === "complete"
+            script.readyState === "compvare"
           ) {
             script.onreadystatechange = null;
             callback(false);
@@ -878,13 +879,17 @@ function includeJS(urlJS, doc, callback) {
 }
 
 function findAdminURL() {
-  let regexp = new RegExp("admin*");
-  let path = window.location.pathname.split("/");
-  return path.find((p) => regexp.test(p));
+  var regexp = new RegExp("admin*");
+  var path = window.location.pathname.split("/");
+  return path.find(function (p) {
+    return regexp.test(p);
+  });
 }
 
 function URLPrecedingsDetect() {
-  let regexp = new RegExp("index*");
-  let path = window.location.pathname.split("/");
-  return path.find((p) => regexp.test(p));
+  // var regexp = new RegExp("index.php");
+  var path = window.location.pathname.split("/");
+  return path.find(function (p) {
+    return p == "index.php";
+  });
 }
