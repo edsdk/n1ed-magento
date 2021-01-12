@@ -48,6 +48,8 @@ class Get extends Action implements HttpGetActionInterface
 
         $this->cacheTypeList = $cacheTypeList;
 
+        $this->authSession = $authSession;
+
         if ($this->authSession->isLoggedIn()) {
             $apiKey = $this->scopeConfig->getValue(
                 'edsdk/general/key',
