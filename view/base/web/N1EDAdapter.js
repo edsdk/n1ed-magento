@@ -212,8 +212,35 @@ define([
         return plugin.name == "magentovariable";
       });
 
-      var flmngrURL = "/" + this.adminURL + "/edsdk/flmngr/flmngr";
+      // debugger;
 
+      var toolbar;
+      var mwOpts;
+      var mvOpts;
+      var external_plugins;
+
+      if (mvi != -1 && mwi != -1) {
+        mwOpts = this.config.plugins[mwi].options;
+        mvOpts = this.config.plugins[mvi].options;
+        external_plugins = {
+          magentowidget: "/extras/plugins/magentowidgets",
+          magentovariable: "/extras/plugins/magentovariables",
+        };
+        toolbar = [
+          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
+          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | magentowidget magentovariable",
+        ];
+      } else {
+        mwOpts = null;
+        mvOpts = null;
+        external_plugins = null;
+        toolbar = [
+          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
+          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent",
+        ];
+      }
+
+      var flmngrURL = "/" + this.adminURL + "/edsdk/flmngr/flmngr";
       settings = {
         selector: "#" + this.getId(),
         urlFileManager: flmngrURL,
@@ -228,16 +255,10 @@ define([
           includeToGlobalDoc: false,
         },
         wysiwyg: this,
-        mwOpts: this.config.plugins[mwi].options,
-        mvOpts: this.config.plugins[mvi].options,
-        external_plugins: {
-          magentowidget: "/extras/plugins/magentowidgets",
-          magentovariable: "/extras/plugins/magentovariables",
-        },
-        toolbar: [
-          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
-          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | magentowidget magentovariable",
-        ],
+        mwOpts: mwOpts,
+        mvOpts: mvOpts,
+        external_plugins: external_plugins,
+        toolbar: toolbar,
 
         /**
          * @param {Object} editor
