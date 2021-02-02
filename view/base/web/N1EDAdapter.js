@@ -243,6 +243,7 @@ define([
       var flmngrURL = "/" + this.adminURL + "/edsdk/flmngr/flmngr";
       settings = {
         selector: "#" + this.getId(),
+        integration: "magento",
         urlFileManager: flmngrURL,
         urlFiles: "/pub/media/wysiwyg/",
         relative_urls: false,
