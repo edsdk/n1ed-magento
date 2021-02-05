@@ -1,0 +1,60 @@
+<style>
+    .n1ed-button.n1ed-button--primary {
+        background-color: #007FFF;
+        border-color: #007FFF;
+        color: white;
+    }
+</style>
+<div id="cms-conf-placeholder"></div>
+<div style="display: flex; justify-content: right;">
+    <button id='n1edSave' type="button" class="n1ed-button n1ed-button--primary"><span>Save</span></button>
+</div>
+
+<script src='https://n1ed.com/js/n1ed-cms-conf-3.js'></script>
+<script>
+function findAdminURL(){
+  var regexp = new RegExp('admin*');
+  var path = window.location.pathname.split("/");
+  return path.find(function (p){ return regexp.test(p)});
+}
+
+function URLPrecedingsDetect() {
+  var path = window.location.pathname.split("/");
+  return path.find(function (p) {
+    return p == 'index.php'
+  });
+      }
+
+      var adminURL;
+      if (URLPrecedingsDetect()) {
+        this.adminURL = URLPrecedingsDetect() + '/' + findAdminURL();
+      } else {
+        this.adminURL = findAdminURL();
+      }
+
+      var authUrl = '/' + this.adminURL + '/edsdk/auth/setApiKey';
+var funcSave = window.attachN1EDCmsConf({
+        el: document.getElementById("cms-conf-placeholder"),
+        urlSetApiKeyAndToken:  authUrl,
+        apiKey: '<?php echo $this->getApi(); ?>',
+        token: '<?php echo $this->getToken(); ?>',
+        editorName: 'tinymce', // or 'ckeditor' if you use it as base editor
+        integration: 'magento', // your CMS name in lowercase, type once and do not change in future please
+        isCheckBoxN1EDEcoEnabledVisible: false,
+        checkBoxN1EDEcoEnabledTitle: null,
+        checkBoxN1EDEcoEnabledValue: null,
+        onN1EDEcoEnabledChange: function (value, onFinished) {},
+        onApiKeyChange: function (apiKey, token) {}
+      });
+
+
+document.getElementById('n1edSave').addEventListener('click',function(){
+  funcSave(function(e)  {
+      if(e){
+        alert('Configuration saved');
+      }else{
+        alert('Error: configuration was not save');
+    }
+  })
+  });
+</script>

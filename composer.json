@@ -1,0 +1,34 @@
+{
+  "name": "edsdk/n1ed-magento",
+  "description": "N1ED editor for Magento CMS",
+  "require": {
+    "php": ">=7.0.0",
+    "edsdk/flmngr-server-php": "^1.0.34"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "authors": [
+    {
+      "name": "EdSDK/N1ED",
+      "role": "Company"
+    },
+    {
+      "name": "Ilia Kandaurov",
+      "role": "Developer"
+    },
+    {
+      "name": "Dmitriy Komarov",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "EdSDK\\Wysiwyg\\" : ""
+    }      
+  }
+}
