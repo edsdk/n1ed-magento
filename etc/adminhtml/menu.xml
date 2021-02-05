@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:EdSDK_Wysiwyg:etc/menu.xsd">
+    <menu>
+      <add id="EdSDK_Wysiwyg::edsdk" title="EdSDK" translate="title" module="EdSDK_Wysiwyg" parent="Magento_Backend::content" sortOrder="50" dependsOnModule="EdSDK_Wysiwyg" resource="EdSDK_Wysiwyg::edsdk"/>
+      <add id="EdSDK_Wysiwyg::edsdk_wysiwyg" title="N1ED" translate="title" module="EdSDK_Wysiwyg" parent="EdSDK_Wysiwyg::edsdk" sortOrder="10" dependsOnModule="EdSDK_Wysiwyg" action="edsdk/wysiwygsettings" resource="EdSDK_Wysiwyg::edsdk"/>
+    </menu>
+</config>

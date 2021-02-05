@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<config
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd"
+>
+    <system>
+        <tab id="mageplaza" translate="label" sortOrder="10">
+            <label>EdSDK</label>
+        </tab>
+        <section
+      id="edsdk"
+      translate="label"
+      sortOrder="130"
+      showInDefault="1"
+      showInWebsite="1"
+      showInStore="1"
+    >
+            <class>separator-top</class>
+            <label>N1ED</label>
+            <tab>mageplaza</tab>
+            <resource>EdSDK_Wysiwyg::api_settings</resource>
+            <group
+        id="general"
+        translate="label"
+        type="text"
+        sortOrder="10"
+        showInDefault="1"
+        showInWebsite="0"
+        showInStore="0"
+      >
+                <label>N1ED ACCOUNT</label>
+<field
+          id="key"
+          translate="label"
+          type="text"
+          sortOrder="1"
+          showInDefault="1"
+          showInWebsite="0"
+          showInStore="0"
+        >
+                    <label>API KEY:</label>
+                    <!-- <comment>This text will display on the frontend.</comment> -->
+                </field>
+                <field
+          id="token"
+          translate="label"
+          type="text"
+          sortOrder="1"
+          showInDefault="1"
+          showInWebsite="0"
+          showInStore="0"
+        >
+                    <label>TOKEN:</label>
+                    <!-- <comment>This text will display on the frontend.</comment> -->
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
