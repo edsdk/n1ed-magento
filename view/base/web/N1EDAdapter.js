@@ -227,16 +227,16 @@ define([
           magentovariable: "/extras/plugins/magentovariables",
         };
         toolbar = [
-          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
-          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | magentowidget magentovariable",
+          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat",
+          "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | magentowidget magentovariable",
         ];
       } else {
         mwOpts = null;
         mvOpts = null;
         external_plugins = null;
         toolbar = [
-          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | Info",
-          "Flmngr ImgPen | formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent",
+          "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat",
+          "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent",
         ];
       }
 
