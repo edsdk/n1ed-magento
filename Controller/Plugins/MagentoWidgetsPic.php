@@ -18,8 +18,14 @@ class MagentoWidgetsPic extends \Magento\Framework\App\Action\Action implements
 
     public function execute()
     {
-        header('Content-Type: image/png');
-        echo file_get_contents(__DIR__ . '/MagentoWidgets.png');
+        $response = $this->resultFactory->create(
+            $this->resultFactory::TYPE_RAW
+        );
+        //@codingStandardsIgnoreStart
+        $response->setContents(file_get_contents(__DIR__ . '/mw.png'));
+        //@codingStandardsIgnoreStop
+        $response->setHeader('Content-Type', 'image/png');
+        return $response;
     }
 
     public function createCsrfValidationException(
