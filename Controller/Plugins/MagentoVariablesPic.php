@@ -17,8 +17,14 @@ class MagentoVariablesPic
 
     public function execute()
     {
-        header('Content-Type: image/png');
-        echo file_get_contents(__DIR__ . '/MagentoVariables.png');
+        $response = $this->resultFactory->create(
+            $this->resultFactory::TYPE_RAW
+        );
+        //@codingStandardsIgnoreStart
+        $response->setContents(file_get_contents(__DIR__ . '/mv.png'));
+        //@codingStandardsIgnoreStop
+        $response->setHeader('Content-Type', 'image/png');
+        return $response;
     }
 
     public function createCsrfValidationException(

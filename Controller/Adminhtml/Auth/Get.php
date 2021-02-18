@@ -50,32 +50,6 @@ class Get extends Action implements HttpGetActionInterface
 
         $this->authSession = $authSession;
 
-        if ($this->authSession->isLoggedIn()) {
-            $apiKey = $this->scopeConfig->getValue(
-                'edsdk/general/key',
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-            );
-
-            $token = $this->scopeConfig->getValue(
-                'edsdk/general/token',
-                \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-            );
-
-            if (!$apiKey) {
-                $apiKey = 'MGNTDFLT';
-                $this->configWriter->save(
-                    'edsdk/general/key',
-                    $apiKey,
-                    $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
-                    $scopeId = 0
-                );
-                $this->configCacheClear();
-            }
-            echo json_encode(['apiKey' => $apiKey, 'token' => $token]);
-        } else {
-            die('No auth');
-        }
-
         parent::__construct($context);
     }
 
@@ -90,5 +64,34 @@ class Get extends Action implements HttpGetActionInterface
 
     public function execute()
     {
+        $apiKey = $this->scopeConfig->getValue(
+            'edsdk/general/key',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+
+        $token = $this->scopeConfig->getValue(
+            'edsdk/general/token',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+
+        if (!$apiKey) {
+            $apiKey = 'N1EDDFLT';
+            $this->configWriter->save(
+                'edsdk/general/key',
+                $apiKey,
+                $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+                $scopeId = 0
+            );
+            $this->configCacheClear();
+        }
+
+        $response = $this->resultFactory->create(
+            $this->resultFactory::TYPE_RAW
+        );
+        $response->setContents(
+            json_encode(['apiKey' => $apiKey, 'token' => $token])
+        );
+
+        return $response;
     }
 }

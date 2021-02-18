@@ -16,8 +16,16 @@ class MagentoVariables extends \Magento\Framework\App\Action\Action implements
 
     public function execute()
     {
-        header('Content-Type: application/javascript');
-        echo file_get_contents(__DIR__ . '/MagentoVariables.js');
+        $response = $this->resultFactory->create(
+            $this->resultFactory::TYPE_RAW
+        );
+        //@codingStandardsIgnoreStart
+        $response->setContents(
+            file_get_contents(__DIR__ . '/MagentoVariables.js')
+        );
+        //@codingStandardsIgnoreStop
+        $response->setHeader('Content-Type', 'application/javascript');
+        return $response;
     }
 
     public function createCsrfValidationException(
