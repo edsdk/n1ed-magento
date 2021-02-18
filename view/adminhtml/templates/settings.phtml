@@ -36,8 +36,13 @@ function URLPrecedingsDetect() {
 var funcSave = window.attachN1EDCmsConf({
         el: document.getElementById("cms-conf-placeholder"),
         urlSetApiKeyAndToken:  authUrl,
-        apiKey: '<?php echo $this->getApi(); ?>',
-        token: '<?php echo $this->getToken(); ?>',
+        urlSetApiKeyAndToken__CSRF:{
+          params: {
+            form_key: window.FORM_KEY,
+          },
+        },
+        apiKey: '<?= $block->escapeHtml($block->getApi()) ?>',
+        token: '<?= $block->escapeHtml($block->getToken()) ?>',
         editorName: 'tinymce', // or 'ckeditor' if you use it as base editor
         integration: 'magento', // your CMS name in lowercase, type once and do not change in future please
         isCheckBoxN1EDEcoEnabledVisible: false,

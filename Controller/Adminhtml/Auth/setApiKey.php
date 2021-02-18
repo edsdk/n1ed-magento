@@ -9,9 +9,9 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Backend\Model\Auth\Session;
 
-class setApiKey extends Action implements HttpPostActionInterface
+class SetApiKey extends Action implements HttpPostActionInterface
 {
-    protected $_publicActions = ['save'];
+    protected $_publicActions = ['setApiKey'];
 
     protected $cacheTypeList;
 
@@ -33,26 +33,6 @@ class setApiKey extends Action implements HttpPostActionInterface
 
         $this->authSession = $authSession;
 
-        if ($this->authSession->isLoggedIn()) {
-            $this->configWriter->save(
-                'edsdk/general/key',
-                $_REQUEST['n1edApiKey'],
-                $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
-                $scopeId = 0
-            );
-            $this->configWriter->save(
-                'edsdk/general/token',
-                $_REQUEST['n1edToken'],
-                $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
-                $scopeId = 0
-            );
-            $this->configCacheClear();
-
-            echo 'ok';
-        } else {
-            die('No auth');
-        }
-
         parent::__construct($context);
     }
 
@@ -67,5 +47,25 @@ class setApiKey extends Action implements HttpPostActionInterface
 
     public function execute()
     {
+        $this->configWriter->save(
+            'edsdk/general/key',
+            $this->getRequest()->getParam('n1edApiKey'),
+            $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+            $scopeId = 0
+        );
+        $this->configWriter->save(
+            'edsdk/general/token',
+            $this->getRequest()->getParam('n1edToken'),
+            $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+            $scopeId = 0
+        );
+        $this->configCacheClear();
+
+        $response = $this->resultFactory->create(
+            $this->resultFactory::TYPE_RAW
+        );
+        $response->setContents('ok');
+
+        return $response;
     }
 }

@@ -245,6 +245,11 @@ define([
         selector: "#" + this.getId(),
         integration: "magento",
         urlFileManager: flmngrURL,
+        urlFileManager__CSRF: {
+          params: {
+            form_key: window.FORM_KEY,
+          },
+        },
         urlFiles: "/pub/media/wysiwyg/",
         relative_urls: false,
         apiKey: this.config.apiKey,

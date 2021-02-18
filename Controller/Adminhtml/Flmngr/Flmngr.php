@@ -2,7 +2,6 @@
 
 namespace EdSDK\Wysiwyg\Controller\Adminhtml\Flmngr;
 
-use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use EdSDK\FlmngrServer\FlmngrServer;
@@ -14,12 +13,13 @@ use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Backend\Model\Auth\Session;
+use Magento\Framework\App\CsrfAwareActionInterface;
 
-class Flmngr extends Action implements HttpPostActionInterface
+class Flmngr extends Action implements
+    HttpPostActionInterface,
+    CsrfAwareActionInterface
 {
-    protected $_publicActions = ['upload'];
-
-    protected $_openActions = ['upload'];
+    protected $_publicActions = ['flmngr'];
 
     protected $dirFiles;
 
@@ -29,35 +29,6 @@ class Flmngr extends Action implements HttpPostActionInterface
 
     public function __construct(Context $context, Session $authSession)
     {
-        if ($authSession->isLoggedIn()) {
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-
-            $dir = $objectManager->get(
-                '\Magento\Framework\Filesystem\DirectoryList'
-            );
-
-            $this->createDirIfNotExist(
-                $this->dirFiles = $dir->getPath('media') . '/wysiwyg'
-            );
-
-            $this->createDirIfNotExist(
-                $this->dirCache = $dir->getPath('cache') . '/wysiwyg'
-            );
-
-            $this->createDirIfNotExist(
-                $this->dirTmp = $dir->getPath('tmp') . '/wysiwyg'
-            );
-
-            die(
-                FlmngrServer::flmngrRequest([
-                    'dirFiles' => $this->dirFiles,
-                    'dirTmp' => $this->dirTmp,
-                    'dirCache' => $this->dirCache,
-                ])
-            );
-        } else {
-            die('No auth');
-        }
         parent::__construct($context);
     }
 
@@ -70,5 +41,45 @@ class Flmngr extends Action implements HttpPostActionInterface
 
     public function execute()
     {
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        $dir = $objectManager->get(
+            \Magento\Framework\Filesystem\DirectoryList::class
+        );
+
+        $this->createDirIfNotExist(
+            $this->dirFiles = $dir->getPath('media') . '/wysiwyg'
+        );
+
+        $this->createDirIfNotExist(
+            $this->dirCache = $dir->getPath('cache') . '/wysiwyg'
+        );
+
+        $this->createDirIfNotExist(
+            $this->dirTmp = $dir->getPath('tmp') . '/wysiwyg'
+        );
+
+        $response = $this->resultFactory->create(
+            $this->resultFactory::TYPE_RAW
+        );
+        $response->setContents(
+            FlmngrServer::flmngrRequest([
+                'dirFiles' => $this->dirFiles,
+                'dirTmp' => $this->dirTmp,
+                'dirCache' => $this->dirCache,
+            ])
+        );
+        return $response;
+    }
+
+    public function createCsrfValidationException(
+        RequestInterface $request
+    ): ?InvalidRequestException {
+        return null;
+    }
+
+    public function validateForCsrf(RequestInterface $request): ?bool
+    {
+        return true;
     }
 }
