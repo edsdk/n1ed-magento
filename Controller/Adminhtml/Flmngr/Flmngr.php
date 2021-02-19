@@ -5,19 +5,17 @@ namespace EdSDK\Wysiwyg\Controller\Adminhtml\Flmngr;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use EdSDK\FlmngrServer\FlmngrServer;
-
 use Magento\Backend\App\Action;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Backend\Model\Auth\Session;
 use Magento\Framework\App\CsrfAwareActionInterface;
 
 class Flmngr extends Action implements
     HttpPostActionInterface,
-    CsrfAwareActionInterface
+    CsrfAwareActionInterface,
+    HttpGetActionInterface
 {
     protected $_publicActions = ['flmngr'];
 
@@ -62,6 +60,8 @@ class Flmngr extends Action implements
         $response = $this->resultFactory->create(
             $this->resultFactory::TYPE_RAW
         );
+
+        // die(var_dump($this->dirCache, $this->dirFiles, $this->dirTmp));
         $response->setContents(
             FlmngrServer::flmngrRequest([
                 'dirFiles' => $this->dirFiles,
