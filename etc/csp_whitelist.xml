@@ -1,20 +1,131 @@
 <?xml version="1.0" ?>
-<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+<csp_whitelist
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd"
+>
     <policies>
         <policy id="script-src">
             <values>
                 <value id="n1ed-website" type="host">n1ed.com</value>
                 <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
                 <value id="n1ed-fm" type="host">fm.n1ed.com</value>
+                <value
+          id="stackpath-bootstrapcdn"
+          type="host"
+        >stackpath.bootstrapcdn.com</value>
                 <value id="localhost" type="host">localhost</value>
+                <value id="code-jquery" type="host">code.jquery.com</value>
+                <value id="noembed" type="host">noembed.com</value>
+                <value id="googleapis" type="host">googleapis.com</value>
+                <value
+          id="fonts-googleapis"
+          type="host"
+        >fonts.googleapis.com</value>
+                <value
+          id="suggestqueries-google"
+          type="host"
+        >suggestqueries.google.com</value>
+                <value
+          id="translate-yandex"
+          type="host"
+        >translate.yandex.net</value>
             </values>
         </policy>
+         <policy id="style-src">
+         <values>
+         <value id="n1ed-website" type="host">n1ed.com</value>
+                <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
+                <value id="n1ed-fm" type="host">fm.n1ed.com</value>
+                <value
+          id="stackpath-bootstrapcdn"
+          type="host"
+        >stackpath.bootstrapcdn.com</value>
+                <value id="localhost" type="host">localhost</value>
+                <value id="code-jquery" type="host">code.jquery.com</value>
+                <value id="noembed" type="host">noembed.com</value>
+                <value id="googleapis" type="host">googleapis.com</value>
+                <value
+          id="fonts-googleapis"
+          type="host"
+        >fonts.googleapis.com</value>
+                <value
+          id="suggestqueries-google"
+          type="host"
+        >suggestqueries.google.com</value>
+                <value
+          id="translate-yandex"
+          type="host"
+        >translate.yandex.net</value>
+            </values>
+         </policy>
+          <policy id="font-src">
+         <values>
+         <value id="n1ed-website" type="host">n1ed.com</value>
+                <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
+                <value id="n1ed-fm" type="host">fm.n1ed.com</value>
+                <value
+          id="stackpath-bootstrapcdn"
+          type="host"
+        >stackpath.bootstrapcdn.com</value>
+                <value id="localhost" type="host">localhost</value>
+                <value id="code-jquery" type="host">code.jquery.com</value>
+                <value id="noembed" type="host">noembed.com</value>
+                <value id="googleapis" type="host">googleapis.com</value>
+                <value
+          id="fonts-googleapis"
+          type="host"
+        >fonts.googleapis.com</value>
+                <value
+          id="suggestqueries-google"
+          type="host"
+        >suggestqueries.google.com</value>
+                <value
+          id="translate-yandex"
+          type="host"
+        >translate.yandex.net</value>
+            </values>
+         </policy>
         <policy id="connect-src">
             <values>
+
+                <value
+          id="www-googleapis"
+          type="host"
+        >www.googleapis.com</value>
                 <value id="n1ed-website" type="host">n1ed.com</value>
                 <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
                 <value id="n1ed-fm" type="host">fm.n1ed.com</value>
+                <value
+          id="stackpath-bootstrapcdn"
+          type="host"
+        >stackpath.bootstrapcdn.com</value>
                 <value id="localhost" type="host">localhost</value>
+                <value id="code-jquery" type="host">code.jquery.com</value>
+                <value id="noembed" type="host">noembed.com</value>
+                <value id="googleapis" type="host">googleapis.com</value>
+                <value
+          id="fonts-googleapis"
+          type="host"
+        >fonts.googleapis.com</value>
+                <value
+          id="suggestqueries-google"
+          type="host"
+        >suggestqueries.google.com</value>
+                <value
+          id="translate-yandex"
+          type="host"
+        >translate.yandex.net</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+            <value id="youtube" type="host">youtube.com</value>
+            <value id="www-youtube" type="host">www.youtube.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+            <value id="i-ytimg" type="host">i.ytimg.com</value>
             </values>
         </policy>
     </policies>
