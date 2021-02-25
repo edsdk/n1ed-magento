@@ -11,5 +11,10 @@ composer require edsdk/n1ed-magento
 bin/magento s:d:c && bin/magento setup:upgrade && bin/magento c:c
 ```
 
+Go to your web control panel into:
 
+    Stores → Configuration → General → Content management.
 
+Uncheck "Use system value" box related to "WYSIWYG Editor" field, then choose "N1ED" in the combobox, then press "Save Config".
+
+Then you can go into any content or product page and see N1ED in action.  
