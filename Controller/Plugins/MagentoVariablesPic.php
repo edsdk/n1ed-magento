@@ -4,15 +4,18 @@ namespace EdSDK\Wysiwyg\Controller\Plugins;
 
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Filesystem\Io\File;
 use Magento\Framework\App\Request\InvalidRequestException;
 
-class MagentoVariablesPic
-    extends \Magento\Framework\App\Action\Action
-    implements CsrfAwareActionInterface
+class MagentoVariablesPic extends \Magento\Framework\App\Action\Action implements CsrfAwareActionInterface
 {
-    public function __construct(\Magento\Framework\App\Action\Context $context)
-    {
+    private $fs;
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        File $fs
+    ) {
         parent::__construct($context);
+        $this->fs = $fs;
     }
 
     public function execute()
@@ -21,7 +24,7 @@ class MagentoVariablesPic
             $this->resultFactory::TYPE_RAW
         );
         //@codingStandardsIgnoreStart
-        $response->setContents(file_get_contents(__DIR__ . '/mv.png'));
+        $response->setContents($this->fs->read(__DIR__ . '/mv.png'));
         //@codingStandardsIgnoreStop
         $response->setHeader('Content-Type', 'image/png');
         return $response;

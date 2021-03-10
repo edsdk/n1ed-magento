@@ -4,14 +4,19 @@ namespace EdSDK\Wysiwyg\Controller\Plugins;
 
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Filesystem\Io\File;
 use Magento\Framework\App\Request\InvalidRequestException;
 
 class MagentoVariables extends \Magento\Framework\App\Action\Action implements
     CsrfAwareActionInterface
 {
-    public function __construct(\Magento\Framework\App\Action\Context $context)
-    {
+    private $fs;
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        File $fs
+    ) {
         parent::__construct($context);
+        $this->fs = $fs;
     }
 
     public function execute()
@@ -21,7 +26,7 @@ class MagentoVariables extends \Magento\Framework\App\Action\Action implements
         );
         //@codingStandardsIgnoreStart
         $response->setContents(
-            file_get_contents(__DIR__ . '/MagentoVariables.js')
+            $this->fs->read(__DIR__ . '/MagentoVariables.js')
         );
         //@codingStandardsIgnoreStop
         $response->setHeader('Content-Type', 'application/javascript');
