@@ -8,6 +8,7 @@ use EdSDK\FlmngrServer\FlmngrServer;
 use Magento\Backend\App\Action;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Filesystem\Io\File;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Backend\Model\Auth\Session;
 use Magento\Framework\App\CsrfAwareActionInterface;
@@ -21,19 +22,25 @@ class Flmngr extends Action implements
 
     protected $dirFiles;
 
+    private $fs;
+
     protected $dirTmp;
 
     protected $dirCache;
 
-    public function __construct(Context $context, Session $authSession)
-    {
+    public function __construct(
+        Context $context,
+        Session $authSession,
+        File $fs
+    ) {
         parent::__construct($context);
+        $this->fs = $fs;
     }
 
     private function createDirIfNotExist(string $path): void
     {
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
+        if (!$this->fs->fileExists($path)) {
+            $this->fs->mkdir($path, 0777, true);
         }
     }
 

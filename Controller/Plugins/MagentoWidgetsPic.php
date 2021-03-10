@@ -5,15 +5,18 @@ namespace EdSDK\Wysiwyg\Controller\Plugins;
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
+use Magento\Framework\Filesystem\Io\File;
 
 class MagentoWidgetsPic extends \Magento\Framework\App\Action\Action implements
     CsrfAwareActionInterface
 {
-    protected $resultJsonFactory;
-
-    public function __construct(\Magento\Framework\App\Action\Context $context)
-    {
+    private $fs;
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        File $fs
+    ) {
         parent::__construct($context);
+        $this->fs = $fs;
     }
 
     public function execute()
@@ -22,7 +25,7 @@ class MagentoWidgetsPic extends \Magento\Framework\App\Action\Action implements
             $this->resultFactory::TYPE_RAW
         );
         //@codingStandardsIgnoreStart
-        $response->setContents(file_get_contents(__DIR__ . '/mw.png'));
+        $response->setContents($this->fs->read(__DIR__ . '/mw.png'));
         //@codingStandardsIgnoreStop
         $response->setHeader('Content-Type', 'image/png');
         return $response;
