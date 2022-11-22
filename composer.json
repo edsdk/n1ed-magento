@@ -3,10 +3,10 @@
   "description": "N1ED editor for Magento CMS",
   "require": {
     "php": ">=7.0.0",
-    "edsdk/flmngr-server-php": "^1.0.34"
+    "edsdk/flmngr-server-php": "^1.5.0"
   },
   "type": "magento2-module",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "license": [
     "GPL-3.0-or-later"
   ],

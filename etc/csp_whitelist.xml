@@ -8,124 +8,96 @@
             <values>
                 <value id="n1ed-website" type="host">n1ed.com</value>
                 <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
+                <value id="n1ed-o" type="host">o.n1ed.com</value>
                 <value id="n1ed-fm" type="host">fm.n1ed.com</value>
-                <value
-          id="stackpath-bootstrapcdn"
-          type="host"
-        >stackpath.bootstrapcdn.com</value>
+                <value id="stackpath-bootstrapcdn" type="host">stackpath.bootstrapcdn.com</value>
                 <value id="localhost" type="host">localhost</value>
                 <value id="code-jquery" type="host">code.jquery.com</value>
                 <value id="noembed" type="host">noembed.com</value>
                 <value id="googleapis" type="host">googleapis.com</value>
-                <value
-          id="fonts-googleapis"
-          type="host"
-        >fonts.googleapis.com</value>
-                <value
-          id="suggestqueries-google"
-          type="host"
-        >suggestqueries.google.com</value>
-                <value
-          id="translate-yandex"
-          type="host"
-        >translate.yandex.net</value>
+                <value id="fonts-googleapis" type="host">fonts.googleapis.com</value>
+                <value id="suggestqueries-google" type="host">suggestqueries.google.com</value>
+                <value id="translate-yandex" type="host">translate.yandex.net</value>
+                <value id="flmngr-website" type="host">flmngr.com</value>
+                <value id="flmngr-cloud" type="host">cloud.flmngr.com</value>
+                <value id="flmngr-fm" type="host">fm.flmngr.com</value>
+                <value id="fonts-gstatic" type="host">fonts.gstatic.com</value>
+                <value id="cdn-jsdelivr" type="host">cdn.jsdelivr.net</value>
             </values>
         </policy>
          <policy id="style-src">
-         <values>
-         <value id="n1ed-website" type="host">n1ed.com</value>
+            <values>
+                <value id="n1ed-website" type="host">n1ed.com</value>
                 <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
+                <value id="n1ed-o" type="host">o.n1ed.com</value>
                 <value id="n1ed-fm" type="host">fm.n1ed.com</value>
-                <value
-          id="stackpath-bootstrapcdn"
-          type="host"
-        >stackpath.bootstrapcdn.com</value>
+                <value id="stackpath-bootstrapcdn" type="host">stackpath.bootstrapcdn.com</value>
                 <value id="localhost" type="host">localhost</value>
                 <value id="code-jquery" type="host">code.jquery.com</value>
                 <value id="noembed" type="host">noembed.com</value>
                 <value id="googleapis" type="host">googleapis.com</value>
-                <value
-          id="fonts-googleapis"
-          type="host"
-        >fonts.googleapis.com</value>
-                <value
-          id="suggestqueries-google"
-          type="host"
-        >suggestqueries.google.com</value>
-                <value
-          id="translate-yandex"
-          type="host"
-        >translate.yandex.net</value>
+                <value id="fonts-googleapis" type="host">fonts.googleapis.com</value>
+                <value id="suggestqueries-google" type="host">suggestqueries.google.com</value>
+                <value id="translate-yandex" type="host">translate.yandex.net</value>
+                <value id="flmngr-website" type="host">flmngr.com</value>
+                <value id="flmngr-cloud" type="host">cloud.flmngr.com</value>
+                <value id="flmngr-fm" type="host">fm.flmngr.com</value>
+                <value id="fonts-gstatic" type="host">fonts.gstatic.com</value>
+                <value id="cdn-jsdelivr" type="host">cdn.jsdelivr.net</value>
             </values>
          </policy>
-          <policy id="font-src">
-         <values>
-         <value id="n1ed-website" type="host">n1ed.com</value>
+         <policy id="font-src">
+            <values>
+                <value id="n1ed-website" type="host">n1ed.com</value>
                 <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
+                <value id="n1ed-o" type="host">o.n1ed.com</value>
                 <value id="n1ed-fm" type="host">fm.n1ed.com</value>
-                <value
-          id="stackpath-bootstrapcdn"
-          type="host"
-        >stackpath.bootstrapcdn.com</value>
+                <value id="stackpath-bootstrapcdn" type="host">stackpath.bootstrapcdn.com</value>
                 <value id="localhost" type="host">localhost</value>
                 <value id="code-jquery" type="host">code.jquery.com</value>
                 <value id="noembed" type="host">noembed.com</value>
                 <value id="googleapis" type="host">googleapis.com</value>
-                <value
-          id="fonts-googleapis"
-          type="host"
-        >fonts.googleapis.com</value>
-                <value
-          id="suggestqueries-google"
-          type="host"
-        >suggestqueries.google.com</value>
-                <value
-          id="translate-yandex"
-          type="host"
-        >translate.yandex.net</value>
+                <value id="fonts-googleapis" type="host">fonts.googleapis.com</value>
+                <value id="suggestqueries-google" type="host">suggestqueries.google.com</value>
+                <value id="translate-yandex" type="host">translate.yandex.net</value>
+                <value id="flmngr-website" type="host">flmngr.com</value>
+                <value id="flmngr-cloud" type="host">cloud.flmngr.com</value>
+                <value id="flmngr-fm" type="host">fm.flmngr.com</value>
+                <value id="fonts-gstatic" type="host">fonts.gstatic.com</value>
+                <value id="cdn-jsdelivr" type="host">cdn.jsdelivr.net</value>
             </values>
          </policy>
         <policy id="connect-src">
             <values>
-
-                <value
-          id="www-googleapis"
-          type="host"
-        >www.googleapis.com</value>
+                <value id="www-googleapis" type="host">www.googleapis.com</value>
                 <value id="n1ed-website" type="host">n1ed.com</value>
                 <value id="n1ed-cloud" type="host">cloud.n1ed.com</value>
+                <value id="n1ed-o" type="host">o.n1ed.com</value>
                 <value id="n1ed-fm" type="host">fm.n1ed.com</value>
-                <value
-          id="stackpath-bootstrapcdn"
-          type="host"
-        >stackpath.bootstrapcdn.com</value>
+                <value id="stackpath-bootstrapcdn" type="host">stackpath.bootstrapcdn.com</value>
                 <value id="localhost" type="host">localhost</value>
                 <value id="code-jquery" type="host">code.jquery.com</value>
                 <value id="noembed" type="host">noembed.com</value>
                 <value id="googleapis" type="host">googleapis.com</value>
-                <value
-          id="fonts-googleapis"
-          type="host"
-        >fonts.googleapis.com</value>
-                <value
-          id="suggestqueries-google"
-          type="host"
-        >suggestqueries.google.com</value>
-                <value
-          id="translate-yandex"
-          type="host"
-        >translate.yandex.net</value>
+                <value id="fonts-googleapis" type="host">fonts.googleapis.com</value>
+                <value id="suggestqueries-google" type="host">suggestqueries.google.com</value>
+                <value id="translate-yandex" type="host">translate.yandex.net</value>
+                <value id="flmngr-website" type="host">flmngr.com</value>
+                <value id="flmngr-cloud" type="host">cloud.flmngr.com</value>
+                <value id="flmngr-fm" type="host">fm.flmngr.com</value>
+                <value id="fonts-gstatic" type="host">fonts.gstatic.com</value>
+                <value id="cdn-jsdelivr" type="host">cdn.jsdelivr.net</value>
             </values>
         </policy>
         <policy id="frame-src">
             <values>
-            <value id="youtube" type="host">youtube.com</value>
-            <value id="www-youtube" type="host">www.youtube.com</value>
+                <value id="youtube" type="host">youtube.com</value>
+                <value id="www-youtube" type="host">www.youtube.com</value>
             </values>
         </policy>
         <policy id="img-src">
             <values>
-            <value id="i-ytimg" type="host">i.ytimg.com</value>
+                <value id="i-ytimg" type="host">i.ytimg.com</value>
             </values>
         </policy>
     </policies>
