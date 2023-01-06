@@ -75,7 +75,7 @@ class Get extends Action implements HttpGetActionInterface
         );
 
         if (!$apiKey) {
-            $apiKey = 'N1EDDFLT';
+            $apiKey = 'MGNTDFLT';
             $this->configWriter->save(
                 'edsdk/general/key',
                 $apiKey,
