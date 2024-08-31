@@ -43,7 +43,7 @@ define([
       var token = JSON.parse(request.responseText).token;
 
       includeJS(
-        "https://cloud.n1ed.com/cdn/" + apiKey + "/n1tinymce.js",
+        "https://cloud.n1ed.com/cdn/" + apiKey + "/n1tinymce6.js",
         document,
         function () {}
       );
@@ -104,11 +104,11 @@ define([
       var deferreds = [];
 
       function setupNow(settings) {
-        tinymce.init(settings);
+        n1tinymce.init(settings);
       }
 
       function waitForEditor(settings) {
-        if (window.tinymce) {
+        if (window.n1tinymce) {
           setupNow(settings);
         } else {
           setTimeout(function () {
@@ -369,7 +369,7 @@ define([
      * @param {String} id
      */
     get: function (id) {
-      return tinymce.get(id);
+      return n1tinymce.get(id);
     },
 
     /**
@@ -387,7 +387,7 @@ define([
      * @return {Object}
      */
     activeEditor: function () {
-      return tinymce.activeEditor;
+      return n1tinymce.activeEditor;
     },
 
     /**
@@ -513,7 +513,7 @@ define([
 
       this.getPluginButtons().hide();
 
-      tinymce.execCommand("mceAddControl", false, this.getId());
+      n1tinymce.execCommand("mceAddControl", false, this.getId());
 
       return this;
     },
@@ -539,7 +539,7 @@ define([
 
       this.getPluginButtons().show();
 
-      tinymce.execCommand("mceRemoveEditor", false, this.getId());
+      n1tinymce.execCommand("mceRemoveEditor", false, this.getId());
 
       return this;
     },
@@ -559,7 +559,7 @@ define([
     toggle: function () {
       var content;
 
-      if (!tinymce.get(this.getId())) {
+      if (!n1tinymce.get(this.getId())) {
         this.turnOn();
 
         return true;
@@ -582,8 +582,8 @@ define([
      * On form validation.
      */
     onFormValidation: function () {
-      if (tinymce.get(this.getId())) {
-        $(this.getId()).value = tinymce.get(this.getId()).getContent();
+      if (n1tinymce.get(this.getId())) {
+        $(this.getId()).value = n1tinymce.get(this.getId()).getContent();
       }
     },
 

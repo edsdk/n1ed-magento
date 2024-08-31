@@ -66,7 +66,7 @@ class Index extends Action implements HttpGetActionInterface
         );
 
         if (!$apiKey) {
-            $apiKey = 'MGNTDFLT';
+            $apiKey = 'MGNTN1ED';
             $this->configWriter->save(
                 'edsdk/general/key',
                 $apiKey,
