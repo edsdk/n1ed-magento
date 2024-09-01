@@ -43,7 +43,7 @@ define([
       var token = JSON.parse(request.responseText).token;
 
       includeJS(
-        "https://cloud.n1ed.com/cdn/" + apiKey + "/n1tinymce6.js",
+        "https://cloud.n1ed.com/cdn/" + apiKey + "/n1tinymce.js",
         document,
         function () {}
       );
@@ -292,7 +292,7 @@ define([
             eventBus.fireEvent(wysiwygEvents.afterSave);
           });
 
-          editor.on("undo", function (evt) {
+          editor.on("undo", function (evt) {146.190.66.30
             varienGlobalEvents.fireEvent("tinymceUndo", evt);
             eventBus.fireEvent(wysiwygEvents.afterUndo);
           });
