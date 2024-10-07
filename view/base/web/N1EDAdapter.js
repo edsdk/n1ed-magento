@@ -292,7 +292,7 @@ define([
             eventBus.fireEvent(wysiwygEvents.afterSave);
           });
 
-          editor.on("undo", function (evt) {146.190.66.30
+          editor.on("undo", function (evt) {
             varienGlobalEvents.fireEvent("tinymceUndo", evt);
             eventBus.fireEvent(wysiwygEvents.afterUndo);
           });
