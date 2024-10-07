@@ -6,7 +6,7 @@
     "edsdk/flmngr-server-php": "^1.5.0"
   },
   "type": "magento2-module",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "license": [
     "GPL-3.0-or-later"
   ],
