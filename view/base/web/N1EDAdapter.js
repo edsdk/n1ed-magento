@@ -61,7 +61,9 @@ define([
         "openFileBrowser",
         "updateTextArea",
         "onUndo",
-        "removeEvents"
+        "removeEvents",
+        "parseAttributesString",
+        "getId"
       );
 
       varienGlobalEvents.attachEventHandler(

@@ -46,7 +46,7 @@ tinymce.create("tinymce.plugins.magentovariable", {
       }
     });
 
-    editor.settings.varienGlobalEvents.attachEventHandler(
+    (window.varienGlobalEvents || editor.settings.varienGlobalEvents).attachEventHandler(
       "wysiwygEncodeContent",
       function (content) {
         content = self.encodeVariables(content, editor);
@@ -55,7 +55,7 @@ tinymce.create("tinymce.plugins.magentovariable", {
       }
     );
 
-    editor.settings.varienGlobalEvents.attachEventHandler(
+    (window.varienGlobalEvents || editor.settings.varienGlobalEvents).attachEventHandler(
       "wysiwygDecodeContent",
       function (content) {
         content = self.decodeVariables(content, editor);

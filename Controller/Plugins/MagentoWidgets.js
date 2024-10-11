@@ -40,7 +40,7 @@ tinymce.create("tinymce.plugins.magentowidget", {
       }
     });
 
-    editor.settings.varienGlobalEvents.attachEventHandler(
+    (window.varienGlobalEvents || editor.settings.varienGlobalEvents).attachEventHandler(
       "wysiwygEncodeContent",
       function (content) {
         // debugger;
@@ -54,7 +54,7 @@ tinymce.create("tinymce.plugins.magentowidget", {
       }
     );
 
-    editor.settings.varienGlobalEvents.attachEventHandler(
+    (window.varienGlobalEvents || editor.settings.varienGlobalEvents).attachEventHandler(
       "wysiwygDecodeContent",
       function (content) {
         content = self.decodeWidgets(content, editor);
@@ -63,7 +63,7 @@ tinymce.create("tinymce.plugins.magentowidget", {
       }
     );
 
-    editor.settings.varienGlobalEvents.attachEventHandler(
+    (window.varienGlobalEvents || editor.settings.varienGlobalEvents).attachEventHandler(
       "wysiwygClosePopups",
       function () {
         editor.settings.wysiwyg.closeEditorPopup(
